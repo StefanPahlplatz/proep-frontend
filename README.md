@@ -1,5 +1,7 @@
 # Airrnd
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/78600ce3-3bbe-4c62-ba41-5b5074f2d1a2/deploy-status)](https://app.netlify.com/sites/airrnd/deploys)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
 
 ## Development server
