@@ -7,7 +7,7 @@
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
-    "lint": "prettier -l \"**/*.ts\"",
+    "lint": "ng lint && prettier -l \"**/*.ts\"",
     "lint:fix": "prettier --write \"**/*.{ts,html,scss,css}\"",
     "e2e": "ng e2e"
   },

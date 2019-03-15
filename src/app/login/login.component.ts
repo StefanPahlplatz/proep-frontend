@@ -1,12 +1,8 @@
-import { Inject } from "@angular/core";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Subscription } from "rxjs/Subscription";
 import { AuthService, UserService } from "../service";
-import { DisplayMessage } from "../shared/models/display-message";
-
-import { Observable } from "rxjs/Observable";
+import { IDisplayMessage } from "../shared/models/i-display-message";
 import { Subject } from "rxjs/Subject";
 
 @Component({
@@ -30,7 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
    * Notification message from received
    * form request or router
    */
-  public notification: DisplayMessage;
+  public notification: IDisplayMessage;
 
   public returnUrl: string;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
@@ -46,7 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     this.route.params
       .takeUntil(this.ngUnsubscribe)
-      .subscribe((params: DisplayMessage) => {
+      .subscribe((params: IDisplayMessage) => {
         this.notification = params;
       });
     // get return url from route parameters or default to '/'

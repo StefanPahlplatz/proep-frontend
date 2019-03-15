@@ -1,8 +1,6 @@
 import {
   HttpClient,
-  HttpEventType,
   HttpHeaders,
-  HttpParams,
   HttpRequest,
   HttpResponse
 } from "@angular/common/http";
@@ -34,6 +32,7 @@ export class ApiService {
   public get(path: string, args?: any): Observable<any> {
     const options = {
       headers: this.headers,
+      params: {},
       withCredentials: true
     };
 

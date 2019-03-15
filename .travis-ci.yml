@@ -6,11 +6,6 @@ node_js:
 dist: trusty
 sudo: required
 
-branches:
-  only:
-    - master
-    -
-
 script:
-  - npm run
-  - ng build --prod --base-href https://t-palmer.github.io/travis-demo/
+  - npm run lint
+  - ng build --prod

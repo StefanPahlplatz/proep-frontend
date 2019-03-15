@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "app/service";
 import { Router } from "@angular/router";
-import { DisplayMessage } from "../shared/models/display-message";
+import { IDisplayMessage } from "../shared/models/i-display-message";
 
 @Component({
   selector: "app-change-password",
@@ -22,7 +22,7 @@ export class ChangePasswordComponent implements OnInit {
    * Diagnostic message from received
    * form request error
    */
-  notification: DisplayMessage;
+  notification: IDisplayMessage;
 
   constructor(
     private authService: AuthService,

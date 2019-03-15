@@ -1,11 +1,9 @@
 import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { AppComponent } from "./app.component";
+import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./home";
 import { LoginComponent } from "./login";
 import { AdminComponent } from "./admin";
-import { LoginGuard } from "./guard";
-import { GuestGuard, AdminGuard } from "./guard";
+import { AdminGuard, GuestGuard, LoginGuard } from "./guard";
 import { NotFoundComponent } from "./not-found";
 import { ChangePasswordComponent } from "./change-password";
 import { ForbiddenComponent } from "./forbidden";
