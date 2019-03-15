@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://localhost:8080",
+    "target": "http://fozzie.inogo.nl:13500",
     "secure": false
   }
 }

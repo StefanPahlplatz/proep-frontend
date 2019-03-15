@@ -1,13 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HomeComponent } from './home.component';
-import { ApiCardComponent, GithubComponent } from '../component';
-import { MockApiService } from '../service/mocks/api.service.mock';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { HomeComponent } from "./home.component";
+import { ApiCardComponent } from "../component";
+import { MockApiService } from "../service/mocks/api.service.mock";
 
-import {
-  MatButtonModule,
-  MatCardModule
-} from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCardModule } from "@angular/material";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import {
   ApiService,
@@ -15,23 +12,16 @@ import {
   UserService,
   FooService,
   ConfigService
-} from '../service';
+} from "../service";
 
-describe('HomeComponent', () => {
+describe("HomeComponent", () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        HomeComponent,
-        ApiCardComponent,
-        GithubComponent
-      ],
-      imports: [
-        MatButtonModule,
-        MatCardModule
-      ],
+      declarations: [HomeComponent, ApiCardComponent],
+      imports: [MatButtonModule, MatCardModule],
       providers: [
         {
           provide: ApiService,
@@ -42,8 +32,7 @@ describe('HomeComponent', () => {
         FooService,
         ConfigService
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -52,7 +41,7 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,10 +1,10 @@
 const MockObservable = {
-  mergeMap: (cb) => {
+  mergeMap: cb => {
     return cb({ id: 123 });
   },
   toPromise: () => {
     return new Promise((resolve, reject) => {
-      resolve('resolved');
+      resolve("resolved");
     });
   }
 };

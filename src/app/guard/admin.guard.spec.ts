@@ -1,14 +1,14 @@
-import { TestBed, async, inject } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { UserService } from '../service';
-import { AdminGuard } from './admin.guard';
-import { MockUserService } from '../service/mocks';
+import { TestBed, async, inject } from "@angular/core/testing";
+import { Router } from "@angular/router";
+import { UserService } from "../service";
+import { AdminGuard } from "./admin.guard";
+import { MockUserService } from "../service/mocks";
 
 export class RouterStub {
   navigate(commands?: any[], extras?: any) {}
 }
 
-describe('AdminGuard', () => {
+describe("AdminGuard", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -16,7 +16,7 @@ describe('AdminGuard', () => {
         {
           provide: Router,
           useClass: RouterStub
-        }
+        },
         {
           provide: UserService,
           useClass: MockUserService
@@ -25,7 +25,7 @@ describe('AdminGuard', () => {
     });
   });
 
-  it('should ...', inject([AdminGuard], (guard: AdminGuard) => {
+  it("should ...", inject([AdminGuard], (guard: AdminGuard) => {
     expect(guard).toBeTruthy();
   }));
 });

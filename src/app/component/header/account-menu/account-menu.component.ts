@@ -1,18 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {
-  ConfigService,
-  AuthService,
-  UserService
-} from '../../../service';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input } from "@angular/core";
+import { ConfigService, AuthService, UserService } from "../../../service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-account-menu',
-  templateUrl: './account-menu.component.html',
-  styleUrls: ['./account-menu.component.scss']
+  selector: "app-account-menu",
+  templateUrl: "./account-menu.component.html",
+  styleUrls: ["./account-menu.component.scss"]
 })
 export class AccountMenuComponent implements OnInit {
-
   // TODO define user interface
   user: any;
 
@@ -29,7 +24,7 @@ export class AccountMenuComponent implements OnInit {
 
   logout() {
     this.authService.logout().subscribe(res => {
-      this.router.navigate(['/login']);
+      this.router.navigate(["/login"]);
     });
   }
 }

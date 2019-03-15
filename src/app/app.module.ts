@@ -1,8 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, APP_INITIALIZER} from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule, APP_INITIALIZER } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpModule } from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
 // material
 import {
   MatButtonModule,
@@ -14,22 +14,21 @@ import {
   MatInputModule,
   MatIconRegistry,
   MatProgressSpinnerModule
-} from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home';
-import { LoginComponent } from './login';
-import { LoginGuard, GuestGuard, AdminGuard } from './guard';
-import { NotFoundComponent } from './not-found';
-import { AccountMenuComponent } from './component/header/account-menu/account-menu.component';
+} from "@angular/material";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { HomeComponent } from "./home";
+import { LoginComponent } from "./login";
+import { LoginGuard, GuestGuard, AdminGuard } from "./guard";
+import { NotFoundComponent } from "./not-found";
+import { AccountMenuComponent } from "./component/header/account-menu/account-menu.component";
 import {
   HeaderComponent,
   ApiCardComponent,
-  FooterComponent,
-  GithubComponent
-} from './component';
+  FooterComponent
+} from "./component";
 
 import {
   ApiService,
@@ -37,14 +36,14 @@ import {
   UserService,
   FooService,
   ConfigService
-} from './service';
-import { ChangePasswordComponent } from './change-password/change-password.component';
-import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { AdminComponent } from './admin/admin.component';
-import { SignupComponent } from './signup/signup.component';
+} from "./service";
+import { ChangePasswordComponent } from "./change-password/change-password.component";
+import { ForbiddenComponent } from "./forbidden/forbidden.component";
+import { AdminComponent } from "./admin/admin.component";
+import { SignupComponent } from "./signup/signup.component";
 
 export function initUserFactory(userService: UserService) {
-    return () => userService.initUser();
+  return () => userService.initUser();
 }
 
 @NgModule({
@@ -54,7 +53,6 @@ export function initUserFactory(userService: UserService) {
     FooterComponent,
     ApiCardComponent,
     HomeComponent,
-    GithubComponent,
     LoginComponent,
     NotFoundComponent,
     AccountMenuComponent,
@@ -92,12 +90,12 @@ export function initUserFactory(userService: UserService) {
     ConfigService,
     MatIconRegistry,
     {
-      'provide': APP_INITIALIZER,
-      'useFactory': initUserFactory,
-      'deps': [UserService],
-      'multi': true
+      provide: APP_INITIALIZER,
+      useFactory: initUserFactory,
+      deps: [UserService],
+      multi: true
     }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

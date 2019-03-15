@@ -9,7 +9,6 @@ mat-card {
   -o-animation: fadein 1s; /* Opera */
   -moz-animation: fadein 1s; /* Firefox */
   -webkit-animation: fadein 1s; /* Safari and Chrome */
-
 }
 
 mat-input-container {
@@ -28,16 +27,14 @@ button {
 }
 
 .error {
-  color: #D50000;
+  color: #d50000;
 }
 
 .success {
-  color: #8BC34A;
+  color: #8bc34a;
 }
 
-
 @media screen and (max-width: 599px) {
-
   .content {
     /* https://github.com/angular/flex-layout/issues/295 */
     display: block !important;
@@ -48,11 +45,10 @@ button {
     display: block !important;
     max-width: 999px;
   }
-
 }
 
 a {
   text-decoration: none;
   cursor: auto;
-  color: #FFFFFF;
+  color: #ffffff;
 }
