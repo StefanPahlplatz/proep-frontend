@@ -8,7 +8,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint && prettier -l \"**/*.ts\"",
-    "lint:fix": "prettier --write \"**/*.{ts,html,scss,css}\"",
+    "lint:fix": "pretty-quick",
     "e2e": "ng e2e"
   },
   "husky": {
