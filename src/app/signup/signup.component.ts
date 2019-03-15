@@ -1,34 +1,34 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AuthService, UserService } from "../service";
 import { IDisplayMessage } from "../shared/interfaces/display-message";
+import { AuthService, UserService } from "../service";
 import { Subject } from "rxjs/Subject";
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  selector: "app-signup",
+  templateUrl: "./signup.component.html",
+  styleUrls: ["./signup.component.scss"]
 })
-export class LoginComponent implements OnInit, OnDestroy {
-  public title = "Login";
-  public githubLink = "https://github.com/bfwg/angular-spring-starter";
-  public form: FormGroup;
+export class SignupComponent implements OnInit, OnDestroy {
+  title = "Sign up";
+  githubLink = "https://github.com/bfwg/angular-spring-starter";
+  form: FormGroup;
 
   /**
    * Boolean used in telling the UI
    * that the form has been submitted
    * and is awaiting a response
    */
-  public submitted = false;
+  submitted = false;
 
   /**
    * Notification message from received
    * form request or router
    */
-  public notification: IDisplayMessage;
+  notification: IDisplayMessage;
 
-  public returnUrl: string;
+  returnUrl: string;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder
   ) {}
 
-  public ngOnInit() {
+  ngOnInit() {
     this.route.params
       .takeUntil(this.ngUnsubscribe)
       .subscribe((params: IDisplayMessage) => {
@@ -63,33 +63,22 @@ export class LoginComponent implements OnInit, OnDestroy {
           Validators.minLength(3),
           Validators.maxLength(32)
         ])
-      ]
+      ],
+      firstname: [""],
+      lastname: [""]
     });
   }
 
-  public ngOnDestroy() {
+  ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
 
-  public onResetCredentials() {
-    this.userService
-      .resetCredentials()
-      .takeUntil(this.ngUnsubscribe)
-      .subscribe(res => {
-        if (res.result === "success") {
-          alert("Password has been reset to 123 for all accounts");
-        } else {
-          alert("Server error");
-        }
-      });
-  }
-
-  public repository() {
+  repository() {
     window.location.href = this.githubLink;
   }
 
-  public onSubmit() {
+  onSubmit() {
     /**
      * Innocent until proven guilty
      */
@@ -97,19 +86,23 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.submitted = true;
 
     this.authService
-      .login(this.form.value)
+      .signup(this.form.value)
       // show me the animation
       .delay(1000)
       .subscribe(
         data => {
-          this.userService.getMyInfo().subscribe();
+          console.log(data);
+          this.authService.login(this.form.value).subscribe(() => {
+            this.userService.getMyInfo().subscribe();
+          });
           this.router.navigate([this.returnUrl]);
         },
         error => {
           this.submitted = false;
+          console.log("Sign up error" + JSON.stringify(error));
           this.notification = {
             msgType: "error",
-            msgBody: "Incorrect username or password."
+            msgBody: error.error.errorMessage
           };
         }
       );

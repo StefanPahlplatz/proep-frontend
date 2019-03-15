@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "app/service";
 import { Router } from "@angular/router";
-import { IDisplayMessage } from "../shared/models/i-display-message";
+import { IDisplayMessage } from "../shared/interfaces/display-message";
 
 @Component({
   selector: "app-change-password",
