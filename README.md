@@ -1,8 +1,9 @@
 # Angular4 Spring Boot JWT Starter
 
-This sub-project is the frontend UI portion of the project and it was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
-
-**Make sure you also have NPM 3.1, Node 6.9.5 and angular-cli@1.0.0 globally installed**
+[![Netlify Status](https://api.netlify.com/api/v1/badges/78600ce3-3bbe-4c62-ba41-5b5074f2d1a2/deploy-status)](https://app.netlify.com/sites/airrnd/deploys)
+<a href="#badge">
+  <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+</a>
 
 ## File Structure
 
