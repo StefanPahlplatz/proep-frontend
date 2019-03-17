@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://fozzie.inogo.nl:13500",
+    "target": "https://proep.inogo.nl",
     "secure": false
   }
 }
