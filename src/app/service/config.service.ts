@@ -5,7 +5,7 @@ import { environment } from "../../environments/environment";
 @Injectable()
 export class ConfigService {
   private _api_url = environment.production
-    ? "http://fozzie.inogo.nl:13500/api"
+    ? "https://proep.inogo.nl/api"
     : "/api";
 
   private _refresh_token_url = this._api_url + "/refresh";
