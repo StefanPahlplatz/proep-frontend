@@ -4,9 +4,7 @@ import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class ConfigService {
-  private apiUrl = environment.production
-    ? "https://proep.inogo.nl/api"
-    : "/api";
+  private apiUrl = environment.airRnD.baseUrl;
   private refreshTokenUrl = this.apiUrl + "/refresh";
   private loginUrl = this.apiUrl + "/login";
   private logoutUrl = this.apiUrl + "/logout";

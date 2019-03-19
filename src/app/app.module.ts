@@ -8,54 +8,48 @@ import { NgModule } from "@angular/core";
 
 import { AccountMenuComponent } from "./component/header/account-menu/account-menu.component";
 import { AdminComponent } from "./admin/admin.component";
+import { ApiCardComponent } from "./component/api-card/api-card.component";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { ChangePasswordComponent } from "./change-password/change-password.component";
+import { CoreModule } from "./core/core.module";
+import { FooterComponent } from "./component/footer/footer.component";
 import { ForbiddenComponent } from "./forbidden/forbidden.component";
-import {
-  HeaderComponent,
-  ApiCardComponent,
-  FooterComponent
-} from "./component";
-import { HomeComponent } from "./home";
-import { LoginComponent } from "./login";
-import { LoginGuard, GuestGuard, AdminGuard } from "./guard";
-import { NotFoundComponent } from "./not-found";
+import { HeaderComponent } from "./component/header/header.component";
+import { HomeComponent } from "./home/home.component";
+import { LoginComponent } from "./login/login.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
 import { SharedModule } from "./shared/shared.module";
 import { SignupComponent } from "./signup/signup.component";
-import { UserService } from "./core/services/user.service";
-
-export function initUserFactory(userService: UserService) {
-  return () => userService.initUser();
-}
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
+    AccountMenuComponent,
+    AdminComponent,
     ApiCardComponent,
+    AppComponent,
+    ChangePasswordComponent,
+    FooterComponent,
+    ForbiddenComponent,
+    HeaderComponent,
     HomeComponent,
     LoginComponent,
     NotFoundComponent,
-    AccountMenuComponent,
-    ChangePasswordComponent,
-    ForbiddenComponent,
-    AdminComponent,
     SignupComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    CoreModule,
+    FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
     HttpClientModule,
-    AppRoutingModule,
-    SharedModule,
-    FlexLayoutModule
+    HttpModule,
+    ReactiveFormsModule,
+    SharedModule
   ],
-  providers: [LoginGuard, GuestGuard, AdminGuard, UserService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

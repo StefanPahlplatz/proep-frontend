@@ -1,16 +1,14 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterTestingModule } from "@angular/router/testing";
-import {
-  ApiService,
-  AuthService,
-  UserService,
-  ConfigService
-} from "../service";
-import { MockApiService } from "../service/mocks";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { ApiService } from "../core/services/api.service";
+import { AuthService } from "../core/services/auth.service";
 import { ChangePasswordComponent } from "./change-password.component";
+import { ConfigService } from "../core/services/config.service";
+import { MockApiService } from "../core/mocks/api.service.mock";
+import { UserService } from "../core/services/user.service";
 
 describe("ChangePasswordComponent", () => {
   let component: ChangePasswordComponent;

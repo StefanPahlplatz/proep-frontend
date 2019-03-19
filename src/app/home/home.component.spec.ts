@@ -1,18 +1,14 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { HomeComponent } from "./home.component";
-import { ApiCardComponent } from "../component";
-import { MockApiService } from "../service/mocks/api.service.mock";
-
 import { MatButtonModule, MatCardModule } from "@angular/material";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import {
-  ApiService,
-  AuthService,
-  UserService,
-  FooService,
-  ConfigService
-} from "../service";
+import { ApiCardComponent } from "../component/api-card/api-card.component";
+import { ApiService } from "../core/services/api.service";
+import { AuthService } from "../core/services/auth.service";
+import { ConfigService } from "../core/services/config.service";
+import { FooService } from "../core/services/foo.service";
+import { HomeComponent } from "./home.component";
+import { MockApiService } from "../core/mocks/api.service.mock";
+import { UserService } from "../core/services/user.service";
 
 describe("HomeComponent", () => {
   let component: HomeComponent;

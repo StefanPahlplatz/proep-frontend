@@ -1,20 +1,14 @@
-import {
-  async,
-  ComponentFixture,
-  TestBed,
-  inject
-} from "@angular/core/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { RouterTestingModule } from "@angular/router/testing";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import {
-  AuthService,
-  ConfigService,
-  ApiService,
-  UserService
-} from "../../../service";
-import { MockUserService, MockApiService } from "../../../service/mocks";
 import { AccountMenuComponent } from "./account-menu.component";
+import { ApiService } from "../../../core/services/api.service";
+import { AuthService } from "../../../core/services/auth.service";
+import { ConfigService } from "../../../core/services/config.service";
+import { MockApiService } from "../../../core/mocks/api.service.mock";
+import { MockUserService } from "../../../core/mocks/user.service.mock";
+import { UserService } from "../../../core/services/user.service";
 
 describe("AccountMenuComponent", () => {
   let component: AccountMenuComponent;

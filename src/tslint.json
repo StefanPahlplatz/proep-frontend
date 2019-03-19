@@ -7,6 +7,7 @@
     "jsdoc-format": false,
     "member-access": false,
     "no-console": false,
-    "no-empty": false
+    "no-empty": false,
+    "quotemark": [true, "single"]
   }
 }
