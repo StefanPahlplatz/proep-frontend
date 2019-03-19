@@ -19,15 +19,15 @@
         (ngSubmit)="onSubmit()"
         #signupForm="ngForm"
       >
-        <mat-input-container>
+        <mat-form-field>
           <input
             matInput
             formControlName="username"
             required
             placeholder="Username"
           />
-        </mat-input-container>
-        <mat-input-container>
+        </mat-form-field>
+        <mat-form-field>
           <input
             matInput
             formControlName="password"
@@ -35,17 +35,17 @@
             type="password"
             placeholder="Password"
           />
-        </mat-input-container>
-        <mat-input-container>
+        </mat-form-field>
+        <mat-form-field>
           <input
             matInput
             formControlName="firstname"
             placeholder="First name"
           />
-        </mat-input-container>
-        <mat-input-container>
+        </mat-form-field>
+        <mat-form-field>
           <input matInput formControlName="lastname" placeholder="Last name" />
-        </mat-input-container>
+        </mat-form-field>
         <button
           type="submit"
           [disabled]="!signupForm.form.valid"

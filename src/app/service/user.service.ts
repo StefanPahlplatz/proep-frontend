@@ -1,3 +1,4 @@
+import { map } from "rxjs/operators";
 import { Injectable } from "@angular/core";
 import { Headers } from "@angular/http";
 import { ApiService } from "./api.service";
@@ -33,7 +34,7 @@ export class UserService {
   public getMyInfo() {
     return this.apiService
       .get(this.config.whoami_url)
-      .map(user => (this.currentUser = user));
+      .pipe(map(user => (this.currentUser = user)));
   }
 
   public getAll() {

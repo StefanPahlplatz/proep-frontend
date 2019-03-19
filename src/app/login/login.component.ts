@@ -1,9 +1,10 @@
+import { delay, takeUntil } from "rxjs/operators";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService, UserService } from "../service";
 import { IDisplayMessage } from "../shared/interfaces/display-message";
-import { Subject } from "rxjs/Subject";
+import { Subject } from "rxjs";
 
 @Component({
   selector: "app-login",
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.route.params
-      .takeUntil(this.ngUnsubscribe)
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((params: IDisplayMessage) => {
         this.notification = params;
       });
@@ -75,7 +76,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public onResetCredentials() {
     this.userService
       .resetCredentials()
-      .takeUntil(this.ngUnsubscribe)
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(res => {
         if (res.result === "success") {
           alert("Password has been reset to 123 for all accounts");
@@ -98,8 +99,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.authService
       .login(this.form.value)
-      // show me the animation
-      .delay(1000)
+      .pipe(
+        // show me the animation
+        delay(1000)
+      )
       .subscribe(
         data => {
           this.userService.getMyInfo().subscribe();

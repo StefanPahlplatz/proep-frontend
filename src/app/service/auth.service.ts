@@ -1,6 +1,7 @@
+import { map } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { ApiService } from "./api.service";
 import { ConfigService } from "./config.service";
 import { UserService } from "./user.service";
@@ -19,12 +20,12 @@ export class AuthService {
       "Content-Type": "application/x-www-form-urlencoded"
     });
     const body = `username=${user.username}&password=${user.password}`;
-    return this.apiService
-      .post(this.config.login_url, body, loginHeaders)
-      .map(() => {
+    return this.apiService.post(this.config.login_url, body, loginHeaders).pipe(
+      map(() => {
         console.log("Login success");
         this.userService.getMyInfo().subscribe();
-      });
+      })
+    );
   }
 
   public signup(user) {
@@ -34,15 +35,19 @@ export class AuthService {
     });
     return this.apiService
       .post(this.config.signup_url, JSON.stringify(user), signupHeaders)
-      .map(() => {
-        console.log("Sign up success");
-      });
+      .pipe(
+        map(() => {
+          console.log("Sign up success");
+        })
+      );
   }
 
   public logout() {
-    return this.apiService.post(this.config.logout_url, {}).map(() => {
-      this.userService.currentUser = null;
-    });
+    return this.apiService.post(this.config.logout_url, {}).pipe(
+      map(() => {
+        this.userService.currentUser = null;
+      })
+    );
   }
 
   public changePassowrd(passwordChanger) {

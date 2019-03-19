@@ -1,3 +1,4 @@
+import { map, filter, catchError } from "rxjs/operators";
 import {
   HttpClient,
   HttpHeaders,
@@ -7,7 +8,7 @@ import {
 import { Injectable } from "@angular/core";
 import { serialize } from "app/shared/utilities/serialize";
 import "rxjs/add/observable/throw";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import "rxjs/Rx";
 
 export enum RequestMethod {
@@ -40,7 +41,9 @@ export class ApiService {
       options.params = serialize(args);
     }
 
-    return this.http.get(path, options).catch(this.checkError.bind(this));
+    return this.http
+      .get(path, options)
+      .pipe(catchError(this.checkError.bind(this)));
   }
 
   public post(
@@ -70,11 +73,11 @@ export class ApiService {
       withCredentials: true
     });
 
-    return this.http
-      .request(req)
-      .filter(response => response instanceof HttpResponse)
-      .map((response: HttpResponse<any>) => response.body)
-      .catch(error => this.checkError(error));
+    return this.http.request(req).pipe(
+      filter(response => response instanceof HttpResponse),
+      map((response: HttpResponse<any>) => response.body),
+      catchError(error => this.checkError(error))
+    );
   }
 
   // Display error if logged in, otherwise redirect to IDP
