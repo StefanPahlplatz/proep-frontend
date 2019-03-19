@@ -1,7 +1,8 @@
-import { map } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+
 import { ApiService } from "./api.service";
 import { ConfigService } from "./config.service";
 import { UserService } from "./user.service";
@@ -14,7 +15,7 @@ export class AuthService {
     private config: ConfigService
   ) {}
 
-  public login(user) {
+  public login(user: { username: any; password: any }): Observable<any> {
     const loginHeaders = new HttpHeaders({
       Accept: "application/json",
       "Content-Type": "application/x-www-form-urlencoded"
@@ -28,7 +29,7 @@ export class AuthService {
     );
   }
 
-  public signup(user) {
+  public signup(user: any): Observable<any> {
     const signupHeaders = new HttpHeaders({
       Accept: "application/json",
       "Content-Type": "application/json"
@@ -42,7 +43,7 @@ export class AuthService {
       );
   }
 
-  public logout() {
+  public logout(): Observable<any> {
     return this.apiService.post(this.config.logout_url, {}).pipe(
       map(() => {
         this.userService.currentUser = null;
@@ -50,7 +51,7 @@ export class AuthService {
     );
   }
 
-  public changePassowrd(passwordChanger) {
+  public changePassword(passwordChanger: any): Observable<any> {
     return this.apiService.post(
       this.config.change_password_url,
       passwordChanger

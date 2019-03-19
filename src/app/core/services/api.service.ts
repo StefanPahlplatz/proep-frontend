@@ -1,4 +1,3 @@
-import { map, filter, catchError } from "rxjs/operators";
 import {
   HttpClient,
   HttpHeaders,
@@ -6,10 +5,10 @@ import {
   HttpResponse
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { serialize } from "app/shared/utilities/serialize";
-import "rxjs/add/observable/throw";
 import { Observable } from "rxjs";
-import "rxjs/Rx";
+import { map, filter, catchError } from "rxjs/operators";
+
+import { SerializeHelper } from "../../shared/utilities/serialize-helper";
 
 export enum RequestMethod {
   Get = "GET",
@@ -38,7 +37,7 @@ export class ApiService {
     };
 
     if (args) {
-      options.params = serialize(args);
+      options.params = SerializeHelper.serialize(args);
     }
 
     return this.http
@@ -66,10 +65,10 @@ export class ApiService {
     path: string,
     body: any,
     method = RequestMethod.Post,
-    custemHeaders?: HttpHeaders
+    customHeaders?: HttpHeaders
   ): Observable<any> {
     const req = new HttpRequest(method, path, body, {
-      headers: custemHeaders || this.headers,
+      headers: customHeaders || this.headers,
       withCredentials: true
     });
 

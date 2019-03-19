@@ -1,8 +1,9 @@
-import { mergeMap, delay } from "rxjs/operators";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { AuthService } from "app/service";
 import { Router } from "@angular/router";
+import { mergeMap, delay } from "rxjs/operators";
+
+import { AuthService } from "../core/services/auth.service";
 import { IDisplayMessage } from "../shared/interfaces/display-message";
 
 @Component({
@@ -60,7 +61,7 @@ export class ChangePasswordComponent implements OnInit {
     this.submitted = true;
 
     this.authService
-      .changePassowrd(this.form.value)
+      .changePassword(this.form.value)
       .pipe(
         // show me the animation
         delay(1000),

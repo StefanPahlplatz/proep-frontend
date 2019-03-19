@@ -1,10 +1,12 @@
-import { delay, takeUntil } from "rxjs/operators";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { AuthService, UserService } from "../service";
-import { IDisplayMessage } from "../shared/interfaces/display-message";
 import { Subject } from "rxjs";
+import { delay, takeUntil } from "rxjs/operators";
+
+import { AuthService } from "../core/services/auth.service";
+import { IDisplayMessage } from "../shared/interfaces/display-message";
+import { UserService } from "../core/services/user.service";
 
 @Component({
   selector: "app-login",
@@ -104,11 +106,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         delay(1000)
       )
       .subscribe(
-        data => {
+        () => {
           this.userService.getMyInfo().subscribe();
           this.router.navigate([this.returnUrl]);
         },
-        error => {
+        () => {
           this.submitted = false;
           this.notification = {
             msgType: "error",

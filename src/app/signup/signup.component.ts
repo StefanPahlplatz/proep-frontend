@@ -1,10 +1,12 @@
-import { delay, takeUntil } from "rxjs/operators";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { IDisplayMessage } from "../shared/interfaces/display-message";
-import { AuthService, UserService } from "../service";
 import { Subject } from "rxjs";
+import { delay, takeUntil } from "rxjs/operators";
+
+import { AuthService } from "../core/services/auth.service";
+import { IDisplayMessage } from "../shared/interfaces/display-message";
+import { UserService } from "../core/services/user.service";
 
 @Component({
   selector: "app-signup",

@@ -1,12 +1,12 @@
 import { map } from "rxjs/operators";
 import { Injectable } from "@angular/core";
-import { Headers } from "@angular/http";
+
 import { ApiService } from "./api.service";
 import { ConfigService } from "./config.service";
 
 @Injectable()
 export class UserService {
-  public currentUser;
+  public currentUser: any;
 
   constructor(private apiService: ApiService, private config: ConfigService) {}
 
@@ -14,13 +14,10 @@ export class UserService {
     const promise = this.apiService
       .get(this.config.refresh_token_url)
       .toPromise()
-      .then(res => {
+      .then(async res => {
         if (res.access_token !== null) {
-          return this.getMyInfo()
-            .toPromise()
-            .then(user => {
-              this.currentUser = user;
-            });
+          const user = await this.getMyInfo().toPromise();
+          this.currentUser = user;
         }
       })
       .catch(() => null);

@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { ConfigService, FooService, UserService } from "../service";
+
+import { ConfigService } from "../core/services/config.service";
+import { FooService } from "../core/services/foo.service";
+import { UserService } from "../core/services/user.service";
 
 @Component({
   selector: "app-home",
@@ -8,8 +11,9 @@ import { ConfigService, FooService, UserService } from "../service";
 })
 export class HomeComponent implements OnInit {
   public fooResponse = {};
-  public whoamIResponse = {};
+  public whoamiResponse = {};
   public allUserResponse = {};
+
   constructor(
     private config: ConfigService,
     private fooService: FooService,
@@ -22,34 +26,34 @@ export class HomeComponent implements OnInit {
     if (path === this.config.foo_url) {
       this.fooService.getFoo().subscribe(
         res => {
-          this.forgeResonseObj(this.fooResponse, res, path);
+          this.forgeResponseObj(this.fooResponse, res, path);
         },
         err => {
-          this.forgeResonseObj(this.fooResponse, err, path);
+          this.forgeResponseObj(this.fooResponse, err, path);
         }
       );
     } else if (path === this.config.whoami_url) {
       this.userService.getMyInfo().subscribe(
         res => {
-          this.forgeResonseObj(this.whoamIResponse, res, path);
+          this.forgeResponseObj(this.whoamiResponse, res, path);
         },
         err => {
-          this.forgeResonseObj(this.whoamIResponse, err, path);
+          this.forgeResponseObj(this.whoamiResponse, err, path);
         }
       );
     } else {
       this.userService.getAll().subscribe(
         res => {
-          this.forgeResonseObj(this.allUserResponse, res, path);
+          this.forgeResponseObj(this.allUserResponse, res, path);
         },
         err => {
-          this.forgeResonseObj(this.allUserResponse, err, path);
+          this.forgeResponseObj(this.allUserResponse, err, path);
         }
       );
     }
   }
 
-  public forgeResonseObj(obj, res, path) {
+  public forgeResponseObj(obj: any, res: any, path: any) {
     obj.path = path;
     obj.method = "GET";
     if (res.ok === false) {

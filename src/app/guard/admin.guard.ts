@@ -5,8 +5,8 @@ import {
   Router,
   RouterStateSnapshot
 } from "@angular/router";
-import { Observable } from "rxjs";
-import { UserService } from "../service";
+
+import { UserService } from "../core/services/user.service";
 
 @Injectable()
 export class AdminGuard implements CanActivate {
