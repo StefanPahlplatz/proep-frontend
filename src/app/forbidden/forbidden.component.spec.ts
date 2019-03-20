@@ -1,24 +1,24 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { ForbiddenComponent } from "./forbidden.component";
+import { ForbiddenComponent } from './forbidden.component'
 
-describe("ForbiddenComponent", () => {
-  let component: ForbiddenComponent;
-  let fixture: ComponentFixture<ForbiddenComponent>;
+describe('ForbiddenComponent', () => {
+  let component: ForbiddenComponent
+  let fixture: ComponentFixture<ForbiddenComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ForbiddenComponent]
-    }).compileComponents();
-  }));
+      declarations: [ForbiddenComponent],
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ForbiddenComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(ForbiddenComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
-  it("should be created", () => {
-    expect(component).toBeTruthy();
-  });
-});
+  it('should be created', () => {
+    expect(component).toBeTruthy()
+  })
+})

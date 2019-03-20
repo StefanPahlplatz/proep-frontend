@@ -1,38 +1,38 @@
-import { ActivatedRoute, Router } from "@angular/router";
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Subject } from "rxjs";
-import { delay, takeUntil } from "rxjs/operators";
+import { ActivatedRoute, Router } from '@angular/router'
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Subject } from 'rxjs'
+import { delay, takeUntil } from 'rxjs/operators'
 
-import { AuthService } from "../core/services/auth.service";
-import { IDisplayMessage } from "../shared/interfaces/display-message";
-import { UserService } from "../core/services/user.service";
+import { AuthService } from '../core/services/auth.service'
+import { IDisplayMessage } from '../shared/interfaces/display-message'
+import { UserService } from '../core/services/user.service'
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  public title = "Login";
-  public githubLink = "https://github.com/bfwg/angular-spring-starter";
-  public form: FormGroup;
+  public title = 'Login'
+  public githubLink = 'https://github.com/bfwg/angular-spring-starter'
+  public form: FormGroup
 
   /**
    * Boolean used in telling the UI
    * that the form has been submitted
    * and is awaiting a response
    */
-  public submitted = false;
+  public submitted = false
 
   /**
    * Notification message from received
    * form request or router
    */
-  public notification: IDisplayMessage;
+  public notification: IDisplayMessage
 
-  public returnUrl: string;
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
+  public returnUrl: string
+  private ngUnsubscribe: Subject<void> = new Subject<void>()
 
   constructor(
     private userService: UserService,
@@ -46,33 +46,33 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.route.params
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((params: IDisplayMessage) => {
-        this.notification = params;
-      });
+        this.notification = params
+      })
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/";
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/'
     this.form = this.formBuilder.group({
       username: [
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(64)
-        ])
+          Validators.maxLength(64),
+        ]),
       ],
       password: [
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(32)
-        ])
-      ]
-    });
+          Validators.maxLength(32),
+        ]),
+      ],
+    })
   }
 
   public ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+    this.ngUnsubscribe.next()
+    this.ngUnsubscribe.complete()
   }
 
   public onResetCredentials() {
@@ -80,24 +80,24 @@ export class LoginComponent implements OnInit, OnDestroy {
       .resetCredentials()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(res => {
-        if (res.result === "success") {
-          alert("Password has been reset to 123 for all accounts");
+        if (res.result === 'success') {
+          alert('Password has been reset to 123 for all accounts')
         } else {
-          alert("Server error");
+          alert('Server error')
         }
-      });
+      })
   }
 
   public repository() {
-    window.location.href = this.githubLink;
+    window.location.href = this.githubLink
   }
 
   public onSubmit() {
     /**
      * Innocent until proven guilty
      */
-    this.notification = undefined;
-    this.submitted = true;
+    this.notification = undefined
+    this.submitted = true
 
     this.authService
       .login(this.form.value)
@@ -107,16 +107,16 @@ export class LoginComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         () => {
-          this.userService.getMyInfo().subscribe();
-          this.router.navigate([this.returnUrl]);
+          this.userService.getMyInfo().subscribe()
+          this.router.navigate([this.returnUrl])
         },
         () => {
-          this.submitted = false;
+          this.submitted = false
           this.notification = {
-            msgType: "error",
-            msgBody: "Incorrect username or password."
-          };
+            msgType: 'error',
+            msgBody: 'Incorrect username or password.',
+          }
         }
-      );
+      )
   }
 }

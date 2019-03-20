@@ -1,18 +1,18 @@
-import { MatButtonModule, MatCardModule } from "@angular/material";
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { MatButtonModule, MatCardModule } from '@angular/material'
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { ApiCardComponent } from "../component/api-card/api-card.component";
-import { ApiService } from "../core/services/api.service";
-import { AuthService } from "../core/services/auth.service";
-import { ConfigService } from "../core/services/config.service";
-import { FooService } from "../core/services/foo.service";
-import { HomeComponent } from "./home.component";
-import { MockApiService } from "../core/mocks/api.service.mock";
-import { UserService } from "../core/services/user.service";
+import { ApiCardComponent } from '../component/api-card/api-card.component'
+import { ApiService } from '../core/services/api.service'
+import { AuthService } from '../core/services/auth.service'
+import { ConfigService } from '../core/services/config.service'
+import { FooService } from '../core/services/foo.service'
+import { HomeComponent } from './home.component'
+import { MockApiService } from '../core/mocks/api.service.mock'
+import { UserService } from '../core/services/user.service'
 
-describe("HomeComponent", () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('HomeComponent', () => {
+  let component: HomeComponent
+  let fixture: ComponentFixture<HomeComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,23 +21,23 @@ describe("HomeComponent", () => {
       providers: [
         {
           provide: ApiService,
-          useClass: MockApiService
+          useClass: MockApiService,
         },
         AuthService,
         UserService,
         FooService,
-        ConfigService
-      ]
-    }).compileComponents();
-  }));
+        ConfigService,
+      ],
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(HomeComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
-  it("should create", () => {
-    expect(component).toBeTruthy();
-  });
-});
+  it('should create', () => {
+    expect(component).toBeTruthy()
+  })
+})

@@ -1,12 +1,12 @@
-import * as material from "@angular/material";
-import { A11yModule } from "@angular/cdk/a11y";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { CdkStepperModule } from "@angular/cdk/stepper";
-import { CdkTableModule } from "@angular/cdk/table";
-import { CdkTreeModule } from "@angular/cdk/tree";
-import { DragDropModule } from "@angular/cdk/drag-drop";
-import { NgModule } from "@angular/core";
-import { ScrollingModule } from "@angular/cdk/scrolling";
+import * as material from '@angular/material'
+import { A11yModule } from '@angular/cdk/a11y'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { CdkStepperModule } from '@angular/cdk/stepper'
+import { CdkTableModule } from '@angular/cdk/table'
+import { CdkTreeModule } from '@angular/cdk/tree'
+import { DragDropModule } from '@angular/cdk/drag-drop'
+import { NgModule } from '@angular/core'
+import { ScrollingModule } from '@angular/cdk/scrolling'
 
 @NgModule({
   exports: [
@@ -51,7 +51,7 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
     material.MatTabsModule,
     material.MatToolbarModule,
     material.MatTooltipModule,
-    material.MatTreeModule
-  ]
+    material.MatTreeModule,
+  ],
 })
 export class MaterialModule {}

@@ -1,38 +1,38 @@
-import { ActivatedRoute, Router } from "@angular/router";
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Subject } from "rxjs";
-import { delay, takeUntil } from "rxjs/operators";
+import { ActivatedRoute, Router } from '@angular/router'
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Subject } from 'rxjs'
+import { delay, takeUntil } from 'rxjs/operators'
 
-import { AuthService } from "../core/services/auth.service";
-import { IDisplayMessage } from "../shared/interfaces/display-message";
-import { UserService } from "../core/services/user.service";
+import { AuthService } from '../core/services/auth.service'
+import { IDisplayMessage } from '../shared/interfaces/display-message'
+import { UserService } from '../core/services/user.service'
 
 @Component({
-  selector: "app-signup",
-  templateUrl: "./signup.component.html",
-  styleUrls: ["./signup.component.scss"]
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit, OnDestroy {
-  title = "Sign up";
-  githubLink = "https://github.com/bfwg/angular-spring-starter";
-  form: FormGroup;
+  title = 'Sign up'
+  githubLink = 'https://github.com/bfwg/angular-spring-starter'
+  form: FormGroup
 
   /**
    * Boolean used in telling the UI
    * that the form has been submitted
    * and is awaiting a response
    */
-  submitted = false;
+  submitted = false
 
   /**
    * Notification message from received
    * form request or router
    */
-  notification: IDisplayMessage;
+  notification: IDisplayMessage
 
-  returnUrl: string;
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
+  returnUrl: string
+  private ngUnsubscribe: Subject<void> = new Subject<void>()
 
   constructor(
     private userService: UserService,
@@ -46,47 +46,47 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.route.params
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((params: IDisplayMessage) => {
-        this.notification = params;
-      });
+        this.notification = params
+      })
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/";
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/'
     this.form = this.formBuilder.group({
       username: [
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(64)
-        ])
+          Validators.maxLength(64),
+        ]),
       ],
       password: [
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(32)
-        ])
+          Validators.maxLength(32),
+        ]),
       ],
-      firstname: [""],
-      lastname: [""]
-    });
+      firstname: [''],
+      lastname: [''],
+    })
   }
 
   ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+    this.ngUnsubscribe.next()
+    this.ngUnsubscribe.complete()
   }
 
   repository() {
-    window.location.href = this.githubLink;
+    window.location.href = this.githubLink
   }
 
   onSubmit() {
     /**
      * Innocent until proven guilty
      */
-    this.notification = undefined;
-    this.submitted = true;
+    this.notification = undefined
+    this.submitted = true
 
     this.authService
       .signup(this.form.value)
@@ -96,20 +96,20 @@ export class SignupComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         data => {
-          console.log(data);
+          console.log(data)
           this.authService.login(this.form.value).subscribe(() => {
-            this.userService.getMyInfo().subscribe();
-          });
-          this.router.navigate([this.returnUrl]);
+            this.userService.getMyInfo().subscribe()
+          })
+          this.router.navigate([this.returnUrl])
         },
         error => {
-          this.submitted = false;
-          console.log("Sign up error" + JSON.stringify(error));
+          this.submitted = false
+          console.log('Sign up error' + JSON.stringify(error))
           this.notification = {
-            msgType: "error",
-            msgBody: error.error.errorMessage
-          };
+            msgType: 'error',
+            msgBody: error.error.errorMessage,
+          }
         }
-      );
+      )
   }
 }

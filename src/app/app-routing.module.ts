@@ -1,61 +1,61 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
 
-import { AdminComponent } from "./admin/admin.component";
-import { AdminGuard } from "./core/guards/admin.guard";
-import { ChangePasswordComponent } from "./change-password/change-password.component";
-import { ForbiddenComponent } from "./forbidden/forbidden.component";
-import { GuestGuard } from "./core/guards/guest.guard";
-import { HomeComponent } from "./home/home.component";
-import { LoginComponent } from "./login/login.component";
-import { LoginGuard } from "./core/guards/login.guard";
-import { NotFoundComponent } from "./not-found/not-found.component";
-import { SignupComponent } from "./signup/signup.component";
+import { AdminComponent } from './admin/admin.component'
+import { AdminGuard } from './core/guards/admin.guard'
+import { ChangePasswordComponent } from './change-password/change-password.component'
+import { ForbiddenComponent } from './forbidden/forbidden.component'
+import { GuestGuard } from './core/guards/guest.guard'
+import { HomeComponent } from './home/home.component'
+import { LoginComponent } from './login/login.component'
+import { LoginGuard } from './core/guards/login.guard'
+import { NotFoundComponent } from './not-found/not-found.component'
+import { SignupComponent } from './signup/signup.component'
 
 export const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: HomeComponent,
-    pathMatch: "full"
+    pathMatch: 'full',
   },
   {
-    path: "signup",
+    path: 'signup',
     component: SignupComponent,
     canActivate: [GuestGuard],
-    pathMatch: "full"
+    pathMatch: 'full',
   },
   {
-    path: "login",
+    path: 'login',
     component: LoginComponent,
-    canActivate: [GuestGuard]
+    canActivate: [GuestGuard],
   },
   {
-    path: "change-password",
+    path: 'change-password',
     component: ChangePasswordComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
   },
   {
-    path: "admin",
+    path: 'admin',
     component: AdminComponent,
-    canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
   },
   {
-    path: "404",
-    component: NotFoundComponent
+    path: '404',
+    component: NotFoundComponent,
   },
   {
-    path: "403",
-    component: ForbiddenComponent
+    path: '403',
+    component: ForbiddenComponent,
   },
   {
-    path: "**",
-    redirectTo: "/404"
-  }
-];
+    path: '**',
+    redirectTo: '/404',
+  },
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: []
+  providers: [],
 })
 export class AppRoutingModule {}

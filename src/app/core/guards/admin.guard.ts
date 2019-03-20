@@ -1,15 +1,15 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core'
 import {
   ActivatedRouteSnapshot,
   CanActivate,
   Router,
-  RouterStateSnapshot
-} from "@angular/router";
+  RouterStateSnapshot,
+} from '@angular/router'
 
-import { UserService } from "../services/user.service";
+import { UserService } from '../services/user.service'
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class AdminGuard implements CanActivate {
   constructor(private router: Router, private userService: UserService) {}
@@ -21,20 +21,20 @@ export class AdminGuard implements CanActivate {
     if (this.userService.currentUser) {
       if (
         JSON.stringify(this.userService.currentUser.authorities).search(
-          "ROLE_ADMIN"
+          'ROLE_ADMIN'
         ) !== -1
       ) {
-        return true;
+        return true
       } else {
-        this.router.navigate(["/403"]);
-        return false;
+        this.router.navigate(['/403'])
+        return false
       }
     } else {
-      console.log("NOT AN ADMIN ROLE");
-      this.router.navigate(["/login"], {
-        queryParams: { returnUrl: state.url }
-      });
-      return false;
+      console.log('NOT AN ADMIN ROLE')
+      this.router.navigate(['/login'], {
+        queryParams: { returnUrl: state.url },
+      })
+      return false
     }
   }
 }

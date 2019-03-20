@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
-import { AuthService } from "../../core/services/auth.service";
-import { UserService } from "../../core/services/user.service";
+import { AuthService } from '../../core/services/auth.service'
+import { UserService } from '../../core/services/user.service'
 
 @Component({
-  selector: "app-header",
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"]
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   constructor(
@@ -20,16 +20,16 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout().subscribe(res => {
-      this.router.navigate(["/login"]);
-    });
+      this.router.navigate(['/login'])
+    })
   }
 
   hasSignedIn() {
-    return !!this.userService.currentUser;
+    return !!this.userService.currentUser
   }
 
   userName() {
-    const user = this.userService.currentUser;
-    return user.firstname + " " + user.lastname;
+    const user = this.userService.currentUser
+    return user.firstname + ' ' + user.lastname
   }
 }

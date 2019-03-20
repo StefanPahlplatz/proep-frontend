@@ -1,11 +1,11 @@
-import { browser, by, element } from "protractor";
+import { browser, by, element } from 'protractor'
 
 export class WebUiPage {
   public navigateTo() {
-    return browser.get("/");
+    return browser.get('/')
   }
 
   public getParagraphText() {
-    return element(by.css("app-root app-header span")).getText();
+    return element(by.css('app-root app-header span')).getText()
   }
 }

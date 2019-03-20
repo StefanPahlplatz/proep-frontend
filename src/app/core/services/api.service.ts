@@ -2,30 +2,30 @@ import {
   HttpClient,
   HttpHeaders,
   HttpRequest,
-  HttpResponse
-} from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { map, filter, catchError } from "rxjs/operators";
+  HttpResponse,
+} from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
+import { map, filter, catchError } from 'rxjs/operators'
 
-import { SerializeHelper } from "../../shared/utilities/serialize-helper";
+import { SerializeHelper } from '../../shared/utilities/serialize-helper'
 
 export enum RequestMethod {
-  Get = "GET",
-  Head = "HEAD",
-  Post = "POST",
-  Put = "PUT",
-  Delete = "DELETE",
-  Options = "OPTIONS",
-  Patch = "PATCH"
+  Get = 'GET',
+  Head = 'HEAD',
+  Post = 'POST',
+  Put = 'PUT',
+  Delete = 'DELETE',
+  Options = 'OPTIONS',
+  Patch = 'PATCH',
 }
 
 @Injectable()
 export class ApiService {
   public headers = new HttpHeaders({
-    Accept: "application/json",
-    "Content-Type": "application/json"
-  });
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  })
 
   constructor(private http: HttpClient) {}
 
@@ -33,16 +33,16 @@ export class ApiService {
     const options = {
       headers: this.headers,
       params: {},
-      withCredentials: true
-    };
+      withCredentials: true,
+    }
 
     if (args) {
-      options.params = SerializeHelper.serialize(args);
+      options.params = SerializeHelper.serialize(args)
     }
 
     return this.http
       .get(path, options)
-      .pipe(catchError(this.checkError.bind(this)));
+      .pipe(catchError(this.checkError.bind(this)))
   }
 
   public post(
@@ -50,15 +50,15 @@ export class ApiService {
     body: any,
     customHeaders?: HttpHeaders
   ): Observable<any> {
-    return this.request(path, body, RequestMethod.Post, customHeaders);
+    return this.request(path, body, RequestMethod.Post, customHeaders)
   }
 
   public put(path: string, body: any): Observable<any> {
-    return this.request(path, body, RequestMethod.Put);
+    return this.request(path, body, RequestMethod.Put)
   }
 
   public delete(path: string, body?: any): Observable<any> {
-    return this.request(path, body, RequestMethod.Delete);
+    return this.request(path, body, RequestMethod.Delete)
   }
 
   private request(
@@ -69,14 +69,14 @@ export class ApiService {
   ): Observable<any> {
     const req = new HttpRequest(method, path, body, {
       headers: customHeaders || this.headers,
-      withCredentials: true
-    });
+      withCredentials: true,
+    })
 
     return this.http.request(req).pipe(
       filter(response => response instanceof HttpResponse),
       map((response: HttpResponse<any>) => response.body),
       catchError(error => this.checkError(error))
-    );
+    )
   }
 
   // Display error if logged in, otherwise redirect to IDP
@@ -86,6 +86,6 @@ export class ApiService {
     } else {
       // this.displayError(error);
     }
-    throw error;
+    throw error
   }
 }
