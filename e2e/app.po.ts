@@ -1,4 +1,4 @@
-import { browser, by, element } from 'protractor'
+import { browser, by, element } from '../node_modules/protractor'
 
 export class WebUiPage {
   public navigateTo() {
