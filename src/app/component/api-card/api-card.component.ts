@@ -1,38 +1,38 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 
 @Component({
-  selector: "app-api-card",
-  templateUrl: "./api-card.component.html",
-  styleUrls: ["./api-card.component.scss"]
+  selector: 'app-api-card',
+  templateUrl: './api-card.component.html',
+  styleUrls: ['./api-card.component.scss'],
 })
 export class ApiCardComponent implements OnInit {
-  @Input() title: string;
-  @Input() subTitle: string;
-  @Input() imgUrl: string;
-  @Input() content: string;
-  @Input() apiText: string;
-  @Input() responseObj: any;
-  expand = false;
+  @Input() title: string
+  @Input() subTitle: string
+  @Input() imgUrl: string
+  @Input() content: string
+  @Input() apiText: string
+  @Input() responseObj: any
+  expand = false
 
-  @Output() apiClick: EventEmitter<any> = new EventEmitter();
+  @Output() apiClick: EventEmitter<any> = new EventEmitter()
 
   ngOnInit(): void {}
 
   onButtonClick() {
-    this.expand = true;
-    this.apiClick.next(this.apiText);
+    this.expand = true
+    this.apiClick.next(this.apiText)
   }
 
   responsePanelClass() {
-    const rClass = ["response"];
+    const rClass = ['response']
     if (this.expand) {
-      rClass.push("expand");
+      rClass.push('expand')
     }
     if (this.responseObj.status) {
       this.responseObj.status === 200
-        ? rClass.push("response-success")
-        : rClass.push("response-error");
+        ? rClass.push('response-success')
+        : rClass.push('response-error')
     }
-    return rClass.join(" ");
+    return rClass.join(' ')
   }
 }

@@ -1,4 +1,4 @@
 export interface IDisplayMessage {
-  msgType: string;
-  msgBody: string;
+  msgType: string
+  msgBody: string
 }
