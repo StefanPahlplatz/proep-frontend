@@ -11,15 +11,26 @@ import { LoginComponent } from './login/login.component'
 import { LoginGuard } from './core/guards/login.guard'
 import { NotFoundComponent } from './not-found/not-found.component'
 import { SignupComponent } from './signup/signup.component'
+import { AllRidesComponent } from './all-rides/all-rides.component'
 
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
     component: HomeComponent,
     pathMatch: 'full',
   },
   {
-    path: 'signup',
+    path: 'all',
+    component: AllRidesComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'register',
     component: SignupComponent,
     canActivate: [GuestGuard],
     pathMatch: 'full',

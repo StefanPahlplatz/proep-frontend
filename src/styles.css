@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 /*
  * Keep footer at the bottom
@@ -100,6 +100,7 @@ app-footer {
     -webkit-transform: scale3D(1, 1, 1);
     transform: scale3D(1, 1, 1);
   }
+
   35% {
     -webkit-transform: scale3D(0, 0, 1);
     transform: scale3D(0, 0, 1);
@@ -113,6 +114,7 @@ app-footer {
     -webkit-transform: scale3D(1, 1, 1);
     transform: scale3D(1, 1, 1);
   }
+
   35% {
     -webkit-transform: scale3D(0, 0, 1);
     transform: scale3D(0, 0, 1);
