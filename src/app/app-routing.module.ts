@@ -12,6 +12,7 @@ import { LoginGuard } from './core/guards/login.guard'
 import { NotFoundComponent } from './not-found/not-found.component'
 import { SignupComponent } from './signup/signup.component'
 import { AllRidesComponent } from './all-rides/all-rides.component'
+import { VehiclesComponent } from './vehicles/vehicles.component'
 
 export const routes: Routes = [
   {
@@ -22,6 +23,11 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'vehicles',
+    component: VehiclesComponent,
     pathMatch: 'full',
   },
   {
