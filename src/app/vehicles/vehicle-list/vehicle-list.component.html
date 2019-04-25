@@ -1,1 +1,47 @@
-<app-vehicle-item></app-vehicle-item>
+<style>
+  .thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+  }
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+  }
+  .container-fluid {
+    padding: 60px 50px;
+  }
+  .bg-grey {
+    background-color: #f6f6f6;
+  }
+</style>
+
+<div class="row">
+  <div class="col-xs-12">
+    <a></a>
+  </div>
+</div>
+
+<div class="container-fluid text-center bg-grey">
+  <h2>Vehicles</h2>
+  <br />
+  <div class="row text-center slideanim">
+    <div class="col-sm-3" *ngFor="let vehicle of vehicles">
+      <div class="thumbnail">
+        <img
+          src="{{ vehicle.imagePath }}"
+          alt="{{ vehicle.make }}"
+          style="max-height: 200px; max-width: 400px"
+        />
+        <a href="#">
+          <p>
+            <strong>{{ vehicle.make + ' ' + vehicle.model }}</strong>
+          </p>
+        </a>
+
+        <p>Small description</p>
+      </div>
+    </div>
+  </div>
+</div>
