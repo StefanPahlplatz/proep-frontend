@@ -21,11 +21,19 @@ import { LoginComponent } from './login/login.component'
 import { NotFoundComponent } from './not-found/not-found.component'
 import { SharedModule } from './shared/shared.module'
 import { SignupComponent } from './signup/signup.component'
+import { MatNativeDateModule } from '@angular/material'
+import { MaterialModule } from './shared/material.module'
+import { AllRidesComponent } from './all-rides/all-rides.component'
+import { VehiclesComponent } from './vehicles/vehicles.component'
+import { VehicleListComponent } from './vehicles/vehicle-list/vehicle-list.component'
+import { VehicleDetailComponent } from './vehicles/vehicle-detail/vehicle-detail.component'
+import { VehicleItemComponent } from './vehicles/vehicle-list/vehicle-item/vehicle-item.component'
 
 @NgModule({
   declarations: [
     AccountMenuComponent,
     AdminComponent,
+    AllRidesComponent,
     ApiCardComponent,
     AppComponent,
     ChangePasswordComponent,
@@ -36,6 +44,10 @@ import { SignupComponent } from './signup/signup.component'
     LoginComponent,
     NotFoundComponent,
     SignupComponent,
+    VehiclesComponent,
+    VehicleListComponent,
+    VehicleDetailComponent,
+    VehicleItemComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -46,6 +58,8 @@ import { SignupComponent } from './signup/signup.component'
     FormsModule,
     HttpClientModule,
     HttpModule,
+    MatNativeDateModule,
+    MaterialModule,
     ReactiveFormsModule,
     SharedModule,
   ],

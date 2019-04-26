@@ -1,0 +1,58 @@
+$card-width: 290px;
+$card-height: 300px;
+
+.all-rides-container {
+  margin: 30px 10vw 0;
+
+  .recommended-location-container {
+    height: $card-height + 24px;
+    overflow: hidden;
+
+    .location-card {
+      &:hover .overlay {
+        opacity: 1;
+      }
+
+      &:hover .card-title {
+        display: none;
+        transition: 0.5s ease;
+      }
+
+      width: 290px;
+      position: relative;
+
+      .location-img {
+        width: $card-width;
+        height: $card-height;
+      }
+    }
+  }
+
+  .show {
+    overflow: visible;
+    height: auto;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #f9b3a0ce;
+
+  .overlay-text {
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}

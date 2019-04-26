@@ -10,7 +10,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "architect": {
@@ -22,14 +22,17 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.scss"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.scss",
+              "src/theme.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -84,25 +87,23 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.scss"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "src/theme.scss"
             ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ],
+            "assets": ["src/favicon.ico", "src/assets"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -128,9 +129,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
