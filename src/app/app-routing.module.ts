@@ -23,23 +23,19 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    pathMatch: 'full',
   },
   {
     path: 'vehicles',
     component: VehiclesComponent,
-    pathMatch: 'full',
   },
   {
     path: 'all',
     component: AllRidesComponent,
-    pathMatch: 'full',
   },
   {
     path: 'register',
     component: SignupComponent,
     canActivate: [GuestGuard],
-    pathMatch: 'full',
   },
   {
     path: 'login',

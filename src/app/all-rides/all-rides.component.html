@@ -1,34 +1,50 @@
 <app-navbar [canSearch]="true" [hasBorder]="true"></app-navbar>
 <div class="all-rides-container">
   <h3>Recommended Locations</h3>
-  <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <a href="/home">
-          <div class="location-card"></div>
+  <div class="recommended-location-container" [class.show]="showLocations">
+    <div class="d-flex align-content-stretch flex-wrap">
+      <div
+        class="card mb-4 mr-2 border-0 location-card"
+        *ngFor="let location of locations"
+      >
+        <a routerLink="{{ location.route }}" class="text-reset">
+          <img src="{{ location.img }}" class="location-img" />
+          <div class="card-img-overlay">
+            <h4 class="card-title">{{ location.location }}</h4>
+          </div>
+          <div class="overlay">
+            <div class="overlay-text">{{ location.location }}</div>
+          </div>
         </a>
       </div>
-      <div class="carousel-item">
-        a
+    </div>
+  </div>
+  <button mat-button (click)="showLocations = !showLocations">
+    {{ showLocations ? 'Show less' : 'Show More' }}
+  </button>
+</div>
+
+<div class="all-rides-container">
+  <h3>Type Of Rentable Cars</h3>
+  <div class="recommended-location-container" [class.show]="showCars">
+    <div class="d-flex align-content-stretch flex-wrap">
+      <div
+        class="card mb-4 mr-2 border-0 location-card"
+        *ngFor="let car of cars"
+      >
+        <a routerLink="{{ car.route }}" class="text-reset">
+          <img src="{{ car.img }}" class="location-img" />
+          <div class="card-img-overlay">
+            <h4 class="card-title">{{ car.car }}</h4>
+          </div>
+          <div class="overlay">
+            <div class="overlay-text">{{ car.car }}</div>
+          </div>
+        </a>
       </div>
     </div>
-    <a
-      class="carousel-control-prev"
-      href="#carouselExampleInterval"
-      role="button"
-      data-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a
-      class="carousel-control-next"
-      href="#carouselExampleInterval"
-      role="button"
-      data-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
   </div>
+  <button mat-button (click)="showCars = !showCars">
+    {{ showCars ? 'Show less' : 'Show More' }}
+  </button>
 </div>
