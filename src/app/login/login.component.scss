@@ -1,54 +1,43 @@
 .content {
-  width: 100%;
-}
+  mat-card {
+    margin: 50px auto 0;
+    max-width: 350px;
+    text-align: center;
+    animation: fadein 1s;
+    -o-animation: fadein 1s;
+    -moz-animation: fadein 1s;
+    -webkit-animation: fadein 1s;
+  }
 
-mat-card {
-  max-width: 350px;
-  text-align: center;
-  animation: fadein 1s;
-  -o-animation: fadein 1s; /* Opera */
-  -moz-animation: fadein 1s; /* Firefox */
-  -webkit-animation: fadein 1s; /* Safari and Chrome */
-}
+  mat-form-field {
+    display: block;
+  }
 
-mat-form-field {
-  display: block;
-}
+  mat-spinner {
+    width: 25px;
+    height: 25px;
+    margin: 20px auto 0 auto;
+  }
 
-mat-spinner {
-  width: 25px;
-  height: 25px;
-  margin: 20px auto 0 auto;
-}
+  button {
+    display: block;
+    width: 100%;
+  }
 
-button {
-  display: block;
-  width: 100%;
-}
+  .error {
+    color: #d50000;
+  }
 
-.error {
-  color: #d50000;
-}
-
-.success {
-  color: #8bc34a;
+  .success {
+    color: #8bc34a;
+  }
 }
 
 @media screen and (max-width: 599px) {
   .content {
-    /* https://github.com/angular/flex-layout/issues/295 */
-    display: block !important;
+    mat-card {
+      box-shadow: none;
+      margin: 0 auto;
+    }
   }
-
-  mat-card {
-    /* https://github.com/angular/flex-layout/issues/295 */
-    display: block !important;
-    max-width: 999px;
-  }
-}
-
-a {
-  text-decoration: none;
-  cursor: auto;
-  color: #ffffff;
 }

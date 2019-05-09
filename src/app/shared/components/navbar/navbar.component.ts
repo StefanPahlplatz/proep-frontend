@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,11 @@ export class NavbarComponent implements OnInit {
   @Input() canSearch: boolean
   @Input() hasBorder: boolean
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  isCurrentRoute(route: string): boolean {
+    return this.router.url === route
+  }
 }

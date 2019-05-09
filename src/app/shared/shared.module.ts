@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 
 import { MaterialModule } from './material.module'
-import { NavbarComponent } from './navbar/navbar.component'
+import { NavbarComponent } from './components/navbar/navbar.component'
 
 @NgModule({
   declarations: [NavbarComponent],
