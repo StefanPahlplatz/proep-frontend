@@ -9,11 +9,11 @@ import { IDisplayMessage } from '../shared/interfaces/display-message'
 import { UserService } from '../core/services/user.service'
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  selector: 'app-register',
+  templateUrl: './register-page.component.html',
+  styleUrls: ['./register-page.component.scss'],
 })
-export class SignupComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnInit, OnDestroy {
   title = 'Sign up'
   githubLink = 'https://github.com/bfwg/angular-spring-starter'
   form: FormGroup

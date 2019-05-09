@@ -20,7 +20,7 @@ import { HomePageComponent } from './home-page/home-page.component'
 import { LoginPageComponent } from './login-page/login-page.component'
 import { NotFoundComponent } from './not-found/not-found.component'
 import { SharedModule } from './shared/shared.module'
-import { SignupComponent } from './signup/signup.component'
+import { RegisterComponent } from './register-page/register-page.component'
 import { MatNativeDateModule } from '@angular/material'
 import { MaterialModule } from './shared/material.module'
 import { AllRidesComponent } from './all-rides/all-rides.component'
@@ -43,7 +43,7 @@ import { VehicleItemComponent } from './vehicles/vehicle-list/vehicle-item/vehic
     HomePageComponent,
     LoginPageComponent,
     NotFoundComponent,
-    SignupComponent,
+    RegisterComponent,
     VehiclesComponent,
     VehicleListComponent,
     VehicleDetailComponent,
