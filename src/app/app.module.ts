@@ -14,11 +14,10 @@ import { AppRoutingModule } from './app-routing.module'
 import { ChangePasswordComponent } from './change-password/change-password.component'
 import { CoreModule } from './core/core.module'
 import { FooterComponent } from './component/footer/footer.component'
-import { ForbiddenComponent } from './forbidden/forbidden.component'
 import { HeaderComponent } from './component/header/header.component'
 import { HomePageComponent } from './home-page/home-page.component'
 import { LoginPageComponent } from './login-page/login-page.component'
-import { NotFoundComponent } from './not-found/not-found.component'
+import { ErrorPageComponent } from './error-page/error-page.component'
 import { SharedModule } from './shared/shared.module'
 import { RegisterComponent } from './register-page/register-page.component'
 import { MatNativeDateModule } from '@angular/material'
@@ -37,17 +36,16 @@ import { VehicleItemComponent } from './vehicles/vehicle-list/vehicle-item/vehic
     ApiCardComponent,
     AppComponent,
     ChangePasswordComponent,
+    ErrorPageComponent,
     FooterComponent,
-    ForbiddenComponent,
     HeaderComponent,
     HomePageComponent,
     LoginPageComponent,
-    NotFoundComponent,
     RegisterComponent,
-    VehiclesComponent,
-    VehicleListComponent,
     VehicleDetailComponent,
     VehicleItemComponent,
+    VehicleListComponent,
+    VehiclesComponent,
   ],
   imports: [
     AppRoutingModule,
