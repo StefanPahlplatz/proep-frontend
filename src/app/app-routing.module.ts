@@ -6,8 +6,8 @@ import { AdminGuard } from './core/guards/admin.guard'
 import { ChangePasswordComponent } from './change-password/change-password.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component'
 import { GuestGuard } from './core/guards/guest.guard'
-import { HomeComponent } from './home-page/home-page.component'
-import { LoginComponent } from './login/login.component'
+import { HomePageComponent } from './home-page/home-page.component'
+import { LoginPageComponent } from './login-page/login-page.component'
 import { LoginGuard } from './core/guards/login.guard'
 import { NotFoundComponent } from './not-found/not-found.component'
 import { SignupComponent } from './signup/signup.component'
@@ -22,7 +22,7 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent,
+    component: HomePageComponent,
   },
   {
     path: 'vehicles',
@@ -39,7 +39,7 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent,
+    component: LoginPageComponent,
     canActivate: [GuestGuard],
   },
   {

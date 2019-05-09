@@ -16,8 +16,8 @@ import { CoreModule } from './core/core.module'
 import { FooterComponent } from './component/footer/footer.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component'
 import { HeaderComponent } from './component/header/header.component'
-import { HomeComponent } from './home-page/home-page.component'
-import { LoginComponent } from './login/login.component'
+import { HomePageComponent } from './home-page/home-page.component'
+import { LoginPageComponent } from './login-page/login-page.component'
 import { NotFoundComponent } from './not-found/not-found.component'
 import { SharedModule } from './shared/shared.module'
 import { SignupComponent } from './signup/signup.component'
@@ -40,8 +40,8 @@ import { VehicleItemComponent } from './vehicles/vehicle-list/vehicle-item/vehic
     FooterComponent,
     ForbiddenComponent,
     HeaderComponent,
-    HomeComponent,
-    LoginComponent,
+    HomePageComponent,
+    LoginPageComponent,
     NotFoundComponent,
     SignupComponent,
     VehiclesComponent,

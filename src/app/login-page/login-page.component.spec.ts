@@ -6,17 +6,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { ApiService } from '../core/services/api.service'
 import { AuthService } from '../core/services/auth.service'
 import { ConfigService } from '../core/services/config.service'
-import { LoginComponent } from './login.component'
+import { LoginPageComponent } from './login-page.component'
 import { MockApiService } from '../core/mocks/api.service.mock'
 import { UserService } from '../core/services/user.service'
 
-describe('LoginComponent', () => {
-  let component: LoginComponent
-  let fixture: ComponentFixture<LoginComponent>
+describe('LoginPageComponent', () => {
+  let component: LoginPageComponent
+  let fixture: ComponentFixture<LoginPageComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginComponent],
+      declarations: [LoginPageComponent],
       imports: [ReactiveFormsModule, RouterTestingModule],
       providers: [
         UserService,
@@ -32,7 +32,7 @@ describe('LoginComponent', () => {
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent)
+    fixture = TestBed.createComponent(LoginPageComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

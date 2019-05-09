@@ -6,17 +6,17 @@ import { ApiService } from '../core/services/api.service'
 import { AuthService } from '../core/services/auth.service'
 import { ConfigService } from '../core/services/config.service'
 import { FooService } from '../core/services/foo.service'
-import { HomeComponent } from './home-page.component'
+import { HomePageComponent } from './home-page.component'
 import { MockApiService } from '../core/mocks/api.service.mock'
 import { UserService } from '../core/services/user.service'
 
-describe('HomeComponent', () => {
-  let component: HomeComponent
-  let fixture: ComponentFixture<HomeComponent>
+describe('HomePageComponent', () => {
+  let component: HomePageComponent
+  let fixture: ComponentFixture<HomePageComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent, ApiCardComponent],
+      declarations: [HomePageComponent, ApiCardComponent],
       imports: [MatButtonModule, MatCardModule],
       providers: [
         {
@@ -32,7 +32,7 @@ describe('HomeComponent', () => {
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent)
+    fixture = TestBed.createComponent(HomePageComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

@@ -9,11 +9,11 @@ import { IDisplayMessage } from '../shared/interfaces/display-message'
 import { UserService } from '../core/services/user.service'
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-login-page',
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginPageComponent implements OnInit, OnDestroy {
   public title = 'Login'
   public githubLink = 'https://github.com/bfwg/angular-spring-starter'
   public form: FormGroup
