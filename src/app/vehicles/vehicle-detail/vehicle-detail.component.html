@@ -59,6 +59,7 @@
   </div>
 
   <div
+    class="container"
     style="display: block; margin-left: auto;  margin-right: auto; width: 75%;"
   >
     <h2>Tesla - Model S</h2>
@@ -175,13 +176,14 @@
                 <form>
                   <h2>Reserve vehicle</h2>
 
-                  <div class="form-row">
+                  <div class="form-row" style="display:block">
                     <div class="form-group col-md-6">
                       <label for="fromDateInput">From</label>
                       <input
                         type="date"
                         class="form-control"
                         id="fromDateInput"
+                        style="width:150px"
                       />
                     </div>
 
@@ -191,6 +193,7 @@
                         type="date"
                         class="form-control"
                         id="tillDateInput"
+                        style="width:150px"
                       />
                     </div>
                   </div>
@@ -199,7 +202,7 @@
                     <button
                       type="submit"
                       class="btn btn-primary"
-                      routerLink="/all"
+                      routerLink="/home"
                     >
                       Reserve
                     </button>
