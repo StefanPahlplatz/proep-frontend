@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core'
 
 @Component({
-  selector: 'app-all-rides',
-  templateUrl: './all-rides.component.html',
-  styleUrls: ['./all-rides.component.scss'],
+  selector: 'app-popular-rides-page',
+  templateUrl: './popular-rides-page.component.html',
+  styleUrls: ['./popular-rides-page.component.scss'],
 })
-export class AllRidesComponent implements OnInit {
+export class PopularRidesPageComponent implements OnInit {
   showLocations = false
   showCars = false
   locations = [

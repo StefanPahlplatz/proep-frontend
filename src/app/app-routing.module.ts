@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
-import { AdminComponent } from './admin/admin.component'
+import { AdminPageComponent } from './admin-page/admin-page.component'
 import { AdminGuard } from './core/guards/admin.guard'
-import { ChangePasswordComponent } from './change-password/change-password.component'
+import { ChangePasswordPageComponent } from './change-password-page/change-password.component'
 import { GuestGuard } from './core/guards/guest.guard'
 import { HomePageComponent } from './home-page/home-page.component'
 import { LoginPageComponent } from './login-page/login-page.component'
 import { LoginGuard } from './core/guards/login.guard'
 import { ErrorPageComponent } from './error-page/error-page.component'
 import { RegisterComponent } from './register-page/register-page.component'
-import { AllRidesComponent } from './all-rides/all-rides.component'
+import { PopularRidesPageComponent } from './popular-rides-page/popular-rides-page.component'
 import { VehiclesComponent } from './vehicles/vehicles.component'
 
 export const routes: Routes = [
@@ -29,7 +29,7 @@ export const routes: Routes = [
   },
   {
     path: 'all',
-    component: AllRidesComponent,
+    component: PopularRidesPageComponent,
   },
   {
     path: 'register',
@@ -43,12 +43,12 @@ export const routes: Routes = [
   },
   {
     path: 'change-password',
-    component: ChangePasswordComponent,
+    component: ChangePasswordPageComponent,
     canActivate: [LoginGuard],
   },
   {
     path: 'admin',
-    component: AdminComponent,
+    component: AdminPageComponent,
     canActivate: [AdminGuard],
   },
   {

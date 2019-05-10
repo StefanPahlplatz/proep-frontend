@@ -9,16 +9,8 @@ import { Observable } from 'rxjs'
 import { map, filter, catchError } from 'rxjs/operators'
 
 import { SerializeHelper } from '../../shared/utilities/serialize-helper'
-
-export enum RequestMethod {
-  Get = 'GET',
-  Head = 'HEAD',
-  Post = 'POST',
-  Put = 'PUT',
-  Delete = 'DELETE',
-  Options = 'OPTIONS',
-  Patch = 'PATCH',
-}
+import { RequestMethod } from '../../shared/enums/request-method'
+import { Router } from '@angular/router'
 
 @Injectable()
 export class ApiService {
@@ -27,7 +19,7 @@ export class ApiService {
     'Content-Type': 'application/json',
   })
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   public get(path: string, args?: any): Observable<any> {
     const options = {
@@ -81,7 +73,8 @@ export class ApiService {
 
   // Display error if logged in, otherwise redirect to IDP
   private checkError(error: any): any {
-    if (error && error.status === 401) {
+    if (error && error.status === 403) {
+      this.router.navigate(['error', '403'])
       // this.redirectIfUnauth(error);
     } else {
       // this.displayError(error);

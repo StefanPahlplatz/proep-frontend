@@ -5,19 +5,19 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { ApiService } from '../core/services/api.service'
 import { AuthService } from '../core/services/auth.service'
-import { ChangePasswordComponent } from './change-password.component'
+import { ChangePasswordPageComponent } from './change-password.component'
 import { ConfigService } from '../core/services/config.service'
 import { MockApiService } from '../core/mocks/api.service.mock'
 import { UserService } from '../core/services/user.service'
 
-describe('ChangePasswordComponent', () => {
-  let component: ChangePasswordComponent
-  let fixture: ComponentFixture<ChangePasswordComponent>
+describe('ChangePasswordPageComponent', () => {
+  let component: ChangePasswordPageComponent
+  let fixture: ComponentFixture<ChangePasswordPageComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, FormsModule, ReactiveFormsModule],
-      declarations: [ChangePasswordComponent],
+      declarations: [ChangePasswordPageComponent],
       providers: [
         {
           provide: ApiService,
@@ -32,7 +32,7 @@ describe('ChangePasswordComponent', () => {
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChangePasswordComponent)
+    fixture = TestBed.createComponent(ChangePasswordPageComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

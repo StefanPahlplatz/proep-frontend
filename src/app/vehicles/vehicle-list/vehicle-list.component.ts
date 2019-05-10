@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Vehicle } from '../vehicle.model'
+import { Vehicle } from '../../shared/models/vehicle.model'
 
 @Component({
   selector: 'app-vehicle-list',

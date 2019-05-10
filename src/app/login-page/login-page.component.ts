@@ -1,8 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Subject } from 'rxjs'
-import { delay, takeUntil } from 'rxjs/operators'
+import { Subject, of } from 'rxjs'
+import { delay, takeUntil, catchError } from 'rxjs/operators'
 
 import { AuthService } from '../core/services/auth.service'
 import { IDisplayMessage } from '../shared/interfaces/display-message'
@@ -14,24 +14,13 @@ import { UserService } from '../core/services/user.service'
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
-  public title = 'Login'
-  public githubLink = 'https://github.com/bfwg/angular-spring-starter'
-  public form: FormGroup
-
-  /**
-   * Boolean used in telling the UI
-   * that the form has been submitted
-   * and is awaiting a response
-   */
-  public submitted = false
-
-  /**
-   * Notification message from received
-   * form request or router
-   */
   public notification: IDisplayMessage
-
+  public form: FormGroup
   public returnUrl: string
+
+  public submitted = false
+  public title = 'Login'
+
   private ngUnsubscribe: Subject<void> = new Subject<void>()
 
   constructor(
@@ -88,35 +77,32 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       })
   }
 
-  public repository() {
-    window.location.href = this.githubLink
-  }
-
   public onSubmit() {
-    /**
-     * Innocent until proven guilty
-     */
     this.notification = undefined
     this.submitted = true
+
+    console.log('Value sent', this.form.value)
 
     this.authService
       .login(this.form.value)
       .pipe(
         // show me the animation
-        delay(1000)
-      )
-      .subscribe(
-        () => {
-          this.userService.getMyInfo().subscribe()
-          this.router.navigate([this.returnUrl])
-        },
-        () => {
+        delay(1000),
+        catchError(error => {
+          console.error('Something went wrong', error)
           this.submitted = false
           this.notification = {
             msgType: 'error',
             msgBody: 'Incorrect username or password.',
           }
-        }
+          return of()
+        })
       )
+      .subscribe(data => {
+        console.log('success', data)
+
+        this.userService.getMyInfo().subscribe()
+        this.router.navigate([this.returnUrl])
+      })
   }
 }

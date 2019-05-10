@@ -7,11 +7,11 @@ import { AuthService } from '../core/services/auth.service'
 import { IDisplayMessage } from '../shared/interfaces/display-message'
 
 @Component({
-  selector: 'app-change-password',
-  templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.scss'],
+  selector: 'app-change-password-page',
+  templateUrl: './change-password-page.component.html',
+  styleUrls: ['./change-password-page.component.scss'],
 })
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordPageComponent implements OnInit {
   form: FormGroup
   /**
    * Boolean used in telling the UI

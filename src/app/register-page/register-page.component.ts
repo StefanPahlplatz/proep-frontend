@@ -1,8 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Subject } from 'rxjs'
-import { delay, takeUntil } from 'rxjs/operators'
+import { Subject, of } from 'rxjs'
+import { delay, takeUntil, catchError } from 'rxjs/operators'
 
 import { AuthService } from '../core/services/auth.service'
 import { IDisplayMessage } from '../shared/interfaces/display-message'
@@ -14,24 +14,13 @@ import { UserService } from '../core/services/user.service'
   styleUrls: ['./register-page.component.scss'],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  title = 'Sign up'
-  githubLink = 'https://github.com/bfwg/angular-spring-starter'
   form: FormGroup
-
-  /**
-   * Boolean used in telling the UI
-   * that the form has been submitted
-   * and is awaiting a response
-   */
-  submitted = false
-
-  /**
-   * Notification message from received
-   * form request or router
-   */
   notification: IDisplayMessage
-
   returnUrl: string
+
+  submitted = false
+  title = 'Sign up'
+
   private ngUnsubscribe: Subject<void> = new Subject<void>()
 
   constructor(
@@ -77,14 +66,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.complete()
   }
 
-  repository() {
-    window.location.href = this.githubLink
-  }
-
   onSubmit() {
-    /**
-     * Innocent until proven guilty
-     */
     this.notification = undefined
     this.submitted = true
 
@@ -92,24 +74,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
       .signup(this.form.value)
       .pipe(
         // show me the animation
-        delay(1000)
-      )
-      .subscribe(
-        data => {
-          console.log(data)
-          this.authService.login(this.form.value).subscribe(() => {
-            this.userService.getMyInfo().subscribe()
-          })
-          this.router.navigate([this.returnUrl])
-        },
-        error => {
+        delay(1000),
+        catchError(error => {
           this.submitted = false
-          console.log('Sign up error' + JSON.stringify(error))
+          console.error('Sign up error', error)
           this.notification = {
             msgType: 'error',
             msgBody: error.error.errorMessage,
           }
-        }
+          return of()
+        })
       )
+      .subscribe(data => {
+        console.log('Successfully signed up', data)
+        this.authService.login(this.form.value).subscribe(() => {
+          this.userService.getMyInfo().subscribe()
+        })
+        this.router.navigate([this.returnUrl])
+      })
   }
 }
