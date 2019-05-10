@@ -24,9 +24,7 @@ import { PopularRidesPageComponent } from './popular-rides-page/popular-rides-pa
 import { RegisterComponent } from './register-page/register-page.component'
 import { SharedModule } from './shared/shared.module'
 import { VehicleDetailPageComponent } from './vehicle-detail-page/vehicle-detail-page.component'
-import { VehicleItemComponent } from './vehicles/vehicle-list/vehicle-item/vehicle-item.component'
-import { VehicleListComponent } from './vehicles/vehicle-list/vehicle-list.component'
-import { VehiclesComponent } from './vehicles/vehicles.component'
+import { VehiclesPageComponent } from './vehicles-page/vehicles-page.component'
 
 @NgModule({
   declarations: [
@@ -43,9 +41,7 @@ import { VehiclesComponent } from './vehicles/vehicles.component'
     LoginPageComponent,
     RegisterComponent,
     VehicleDetailPageComponent,
-    VehicleItemComponent,
-    VehicleListComponent,
-    VehiclesComponent,
+    VehiclesPageComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -11,7 +11,8 @@ import { LoginGuard } from './core/guards/login.guard'
 import { ErrorPageComponent } from './error-page/error-page.component'
 import { RegisterComponent } from './register-page/register-page.component'
 import { PopularRidesPageComponent } from './popular-rides-page/popular-rides-page.component'
-import { VehiclesComponent } from './vehicles/vehicles.component'
+import { VehiclesPageComponent } from './vehicles-page/vehicles-page.component'
+import { VehicleDetailPageComponent } from './vehicle-detail-page/vehicle-detail-page.component'
 
 export const routes: Routes = [
   {
@@ -24,12 +25,16 @@ export const routes: Routes = [
     component: HomePageComponent,
   },
   {
-    path: 'vehicles',
-    component: VehiclesComponent,
-  },
-  {
     path: 'all',
     component: PopularRidesPageComponent,
+  },
+  {
+    path: 'vehicles',
+    component: VehiclesPageComponent,
+  },
+  {
+    path: 'vehicles/:id',
+    component: VehicleDetailPageComponent,
   },
   {
     path: 'register',

@@ -22,29 +22,35 @@
   <button mat-button (click)="showLocations = !showLocations">
     {{ showLocations ? 'Show less' : 'Show More' }}
   </button>
+  <button mat-button *ngIf="showLocations" routerLink="/places">
+    Show all
+  </button>
 </div>
 
 <div class="all-rides-container">
-  <h3>Type Of Rentable Cars</h3>
-  <div class="recommended-location-container" [class.show]="showCars">
+  <h3>Type Of Rentable Vehicles</h3>
+  <div class="recommended-location-container" [class.show]="showVehicles">
     <div class="d-flex align-content-stretch flex-wrap">
       <div
         class="card mb-4 mr-2 border-0 location-card"
-        *ngFor="let car of cars"
+        *ngFor="let vehicle of vehicles"
       >
-        <a routerLink="{{ car.route }}" class="text-reset">
-          <img src="{{ car.img }}" class="location-img" />
+        <a routerLink="{{ vehicle.route }}" class="text-reset">
+          <img src="{{ vehicle.img }}" class="location-img" />
           <div class="card-img-overlay">
-            <h4 class="card-title">{{ car.car }}</h4>
+            <h4 class="card-title">{{ vehicle.type }}</h4>
           </div>
           <div class="overlay">
-            <div class="overlay-text">{{ car.car }}</div>
+            <div class="overlay-text">{{ vehicle.type }}</div>
           </div>
         </a>
       </div>
     </div>
   </div>
-  <button mat-button (click)="showCars = !showCars">
-    {{ showCars ? 'Show less' : 'Show More' }}
+  <button mat-button (click)="showVehicles = !showVehicles">
+    {{ showVehicles ? 'Show less' : 'Show More' }}
+  </button>
+  <button mat-button *ngIf="showVehicles" routerLink="/vehicles">
+    Show all
   </button>
 </div>

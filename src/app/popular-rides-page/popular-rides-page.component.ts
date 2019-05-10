@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core'
 })
 export class PopularRidesPageComponent implements OnInit {
   showLocations = false
-  showCars = false
+  showVehicles = false
   locations = [
     {
       location: 'Paris',
@@ -51,36 +51,36 @@ export class PopularRidesPageComponent implements OnInit {
     },
   ]
 
-  cars = [
+  vehicles = [
     {
-      car: 'Dream Car',
+      type: 'Dream Car',
       img: '/assets/images/dream-car.jpg',
-      route: '/cars/dream-car',
+      route: '/vehicles/dream-car',
     },
     {
-      car: 'Family Car',
+      type: 'Family Car',
       img: '/assets/images/family-car.jpg',
-      route: '/cars/family-car',
+      route: '/vehicles/family-car',
     },
     {
-      car: 'Eco Car',
+      type: 'Eco Car',
       img: '/assets/images/eco-car.jpg',
-      route: '/cars/eco-car',
+      route: '/vehicles/eco-car',
     },
     {
-      car: 'Oldtimer',
+      type: 'Oldtimer',
       img: '/assets/images/oldtimer.jpg',
-      route: '/cars/oldtimer',
+      route: '/vehicles/oldtimer',
     },
     {
-      car: 'Fun Car',
+      type: 'Fun Car',
       img: '/assets/images/fun-car.jpg',
-      route: '/cars/fun-car',
+      route: '/vehicles/fun-car',
     },
     {
-      car: 'SUV',
+      type: 'SUV',
       img: '/assets/images/suv.jpg',
-      route: '/cars/suv',
+      route: '/vehicles/suv',
     },
   ]
 
