@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { mergeMap, delay } from 'rxjs/operators'
 
-import { AuthService } from '../core/services/auth.service'
-import { IDisplayMessage } from '../shared/interfaces/display-message'
+import { AuthService } from '../../core/services/auth.service'
+import { IDisplayMessage } from '../../shared/interfaces/display-message'
 
 @Component({
   selector: 'app-change-password-page',

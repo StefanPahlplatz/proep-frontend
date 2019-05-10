@@ -4,9 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Subject, of } from 'rxjs'
 import { delay, takeUntil, catchError } from 'rxjs/operators'
 
-import { AuthService } from '../core/services/auth.service'
-import { IDisplayMessage } from '../shared/interfaces/display-message'
-import { UserService } from '../core/services/user.service'
+import { AuthService } from '../../core/services/auth.service'
+import { IDisplayMessage } from '../../shared/interfaces/display-message'
+import { UserService } from '../../core/services/user.service'
 
 @Component({
   selector: 'app-login-page',

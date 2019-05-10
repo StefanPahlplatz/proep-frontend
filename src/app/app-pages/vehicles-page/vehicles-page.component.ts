@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { VehicleViewModel } from '../shared/view-models/vehicle-view-model'
+import { VehicleViewModel } from '../../shared/view-models/vehicle-view-model'
 
 @Component({
   selector: 'app-vehicles-page',

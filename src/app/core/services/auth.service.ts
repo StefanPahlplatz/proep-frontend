@@ -34,6 +34,8 @@ export class AuthService {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     })
+    console.log(JSON.stringify(user))
+    console.log(user)
     return this.apiService
       .post(this.config.signup_url, JSON.stringify(user), signupHeaders)
       .pipe(

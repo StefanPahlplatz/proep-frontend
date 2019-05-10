@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
-import { AdminPageComponent } from './admin-page/admin-page.component'
+import { AdminPageComponent } from './app-pages/admin-page/admin-page.component'
 import { AdminGuard } from './core/guards/admin.guard'
-import { ChangePasswordPageComponent } from './change-password-page/change-password.component'
+import { ChangePasswordPageComponent } from './app-pages/change-password-page/change-password.component'
 import { GuestGuard } from './core/guards/guest.guard'
-import { HomePageComponent } from './home-page/home-page.component'
-import { LoginPageComponent } from './login-page/login-page.component'
+import { HomePageComponent } from './app-pages/home-page/home-page.component'
+import { LoginPageComponent } from './app-pages/login-page/login-page.component'
 import { LoginGuard } from './core/guards/login.guard'
-import { ErrorPageComponent } from './error-page/error-page.component'
-import { RegisterComponent } from './register-page/register-page.component'
-import { PopularRidesPageComponent } from './popular-rides-page/popular-rides-page.component'
-import { VehiclesPageComponent } from './vehicles-page/vehicles-page.component'
-import { VehicleDetailPageComponent } from './vehicle-detail-page/vehicle-detail-page.component'
+import { ErrorPageComponent } from './app-pages/error-page/error-page.component'
+import { RegisterComponent } from './app-pages/register-page/register-page.component'
+import { PopularRidesPageComponent } from './app-pages/popular-rides-page/popular-rides-page.component'
+import { VehiclesPageComponent } from './app-pages/vehicles-page/vehicles-page.component'
+import { VehicleDetailPageComponent } from './app-pages/vehicle-detail-page/vehicle-detail-page.component'
 
 export const routes: Routes = [
   {
