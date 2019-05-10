@@ -13,6 +13,7 @@ import { NotFoundComponent } from './not-found/not-found.component'
 import { SignupComponent } from './signup/signup.component'
 import { AllRidesComponent } from './all-rides/all-rides.component'
 import { VehiclesComponent } from './vehicles/vehicles.component'
+import { VehicleDetailComponent } from './vehicles/vehicle-detail/vehicle-detail.component'
 
 export const routes: Routes = [
   {
@@ -27,6 +28,10 @@ export const routes: Routes = [
   {
     path: 'vehicles',
     component: VehiclesComponent,
+  },
+  {
+    path: 'vehicle-detail',
+    component: VehicleDetailComponent,
   },
   {
     path: 'all',

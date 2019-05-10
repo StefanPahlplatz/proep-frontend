@@ -1,0 +1,23 @@
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.fi {
+  display: block;
+  float: left;
+  width: 50px;
+  margin-right: 20px;
+}
+
+.ft {
+  overflow: hidden;
+}
+
+.spec {
+  display: block;
+  margin: 0 0 10px 0;
+  overflow: hidden;
+}

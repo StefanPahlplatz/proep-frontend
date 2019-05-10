@@ -56,6 +56,36 @@ export class VehicleListComponent implements OnInit {
       'Luxury',
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/2018_Tesla_Model_S_75D.jpg/1920px-2018_Tesla_Model_S_75D.jpg'
     ),
+    new Vehicle(
+      'Tesla',
+      'Model X',
+      'Luxury',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/2018_Tesla_Model_S_75D.jpg/1920px-2018_Tesla_Model_S_75D.jpg'
+    ),
+    new Vehicle(
+      'Tesla',
+      'Model X',
+      'Luxury',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/2018_Tesla_Model_S_75D.jpg/1920px-2018_Tesla_Model_S_75D.jpg'
+    ),
+    new Vehicle(
+      'Tesla',
+      'Model X',
+      'Luxury',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/2018_Tesla_Model_S_75D.jpg/1920px-2018_Tesla_Model_S_75D.jpg'
+    ),
+    new Vehicle(
+      'Tesla',
+      'Model X',
+      'Luxury',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/2018_Tesla_Model_S_75D.jpg/1920px-2018_Tesla_Model_S_75D.jpg'
+    ),
+    new Vehicle(
+      'Tesla',
+      'Model X',
+      'Luxury',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/2018_Tesla_Model_S_75D.jpg/1920px-2018_Tesla_Model_S_75D.jpg'
+    ),
   ]
 
   constructor() {}
