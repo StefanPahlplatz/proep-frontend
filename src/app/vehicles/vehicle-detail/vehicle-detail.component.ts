@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { Vehicle } from '../vehicle.model'
 
 @Component({
   selector: 'app-vehicle-detail',
@@ -6,7 +7,13 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./vehicle-detail.component.scss'],
 })
 export class VehicleDetailComponent implements OnInit {
-  constructor() {}
+  vehicle: Vehicle
+  location: string
+
+  constructor() {
+    this.vehicle = new Vehicle('Tesla', 'Model S', 'Luxury', null)
+    this.location = 'Amsterdam'
+  }
 
   ngOnInit() {}
 }
