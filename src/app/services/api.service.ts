@@ -8,11 +8,13 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { map, filter, catchError } from 'rxjs/operators'
 
-import { SerializeHelper } from '../../shared/utilities/serialize-helper'
-import { RequestMethod } from '../../models/enums/request-method'
+import { RequestMethod } from '../models/enums/request-method'
 import { Router } from '@angular/router'
+import { SerializeHelper } from '../shared/utilities/serialize-helper'
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ApiService {
   public headers = new HttpHeaders({
     Accept: 'application/json',

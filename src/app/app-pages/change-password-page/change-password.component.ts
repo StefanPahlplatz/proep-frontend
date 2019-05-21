@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { mergeMap, delay } from 'rxjs/operators'
 
-import { AuthService } from '../../core/services/auth.service'
+import { AuthService } from '../../services/auth.service'
 import { IDisplayMessage } from '../../models/interfaces/display-message'
 
 @Component({

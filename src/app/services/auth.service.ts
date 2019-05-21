@@ -7,7 +7,9 @@ import { ApiService } from './api.service'
 import { ConfigService } from './config.service'
 import { UserService } from './user.service'
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   constructor(
     private apiService: ApiService,
