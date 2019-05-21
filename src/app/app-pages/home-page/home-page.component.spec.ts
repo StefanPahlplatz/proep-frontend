@@ -1,12 +1,9 @@
-import { MatButtonModule, MatCardModule } from '@angular/material'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { RouterTestingModule } from '@angular/router/testing'
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { ApiService } from '../../services/api.service'
-import { AuthService } from '../../services/auth.service'
-import { ConfigService } from '../../services/config.service'
 import { HomePageComponent } from './home-page.component'
-import { MockApiService } from '../../core/mocks/api.service.mock'
-import { UserService } from '../../services/user.service'
+import { NavbarComponent } from '../../shared/components/navbar/navbar.component'
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent
@@ -14,17 +11,8 @@ describe('HomePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomePageComponent],
-      imports: [MatButtonModule, MatCardModule],
-      providers: [
-        {
-          provide: ApiService,
-          useClass: MockApiService,
-        },
-        AuthService,
-        UserService,
-        ConfigService,
-      ],
+      declarations: [HomePageComponent, NavbarComponent],
+      imports: [RouterTestingModule, HttpClientTestingModule],
     }).compileComponents()
   }))
 

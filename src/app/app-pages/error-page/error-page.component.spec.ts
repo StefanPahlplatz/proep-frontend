@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
-
+import { RouterTestingModule } from '@angular/router/testing'
 import { ErrorPageComponent } from './error-page.component'
 
 describe('ErrorPageComponent', () => {
@@ -9,6 +9,20 @@ describe('ErrorPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ErrorPageComponent],
+      imports: [
+        RouterTestingModule.withRoutes([
+          {
+            path: '**',
+            component: ErrorPageComponent,
+            data: {
+              code: 404,
+              title: 'Oops! Nothing was found',
+              description:
+                'The page you are looking for might have been removed had its name changed or is temporarily unavailable.',
+            },
+          },
+        ]),
+      ],
     }).compileComponents()
   }))
 
@@ -20,12 +34,5 @@ describe('ErrorPageComponent', () => {
 
   it('should be created', () => {
     expect(component).toBeTruthy()
-  })
-
-  it("<h1> tag should contains 'Page Not Found'", () => {
-    fixture = TestBed.createComponent(ErrorPageComponent)
-    fixture.detectChanges()
-    const compiled = fixture.debugElement.nativeElement
-    expect(compiled.querySelector('h1').textContent).toContain('Page Not Found')
   })
 })

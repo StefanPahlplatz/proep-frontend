@@ -1,19 +1,33 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { RouterTestingModule } from '@angular/router/testing'
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { RegisterComponent } from './register-page.component'
+import { MaterialModule } from '../../shared/material.module'
+import { NavbarComponent } from '../../shared/components/navbar/navbar.component'
+import { RegisterPageComponent } from './register-page.component'
 
-describe('RegisterComponent', () => {
-  let component: RegisterComponent
-  let fixture: ComponentFixture<RegisterComponent>
+describe('RegisterPageComponent', () => {
+  let component: RegisterPageComponent
+  let fixture: ComponentFixture<RegisterPageComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RegisterComponent],
+      declarations: [RegisterPageComponent, NavbarComponent],
+      imports: [
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpClientTestingModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        RouterTestingModule,
+      ],
     }).compileComponents()
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterComponent)
+    fixture = TestBed.createComponent(RegisterPageComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

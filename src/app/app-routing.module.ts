@@ -9,7 +9,7 @@ import { HomePageComponent } from './app-pages/home-page/home-page.component'
 import { LoginPageComponent } from './app-pages/login-page/login-page.component'
 import { LoginGuard } from './guards/login.guard'
 import { ErrorPageComponent } from './app-pages/error-page/error-page.component'
-import { RegisterComponent } from './app-pages/register-page/register-page.component'
+import { RegisterPageComponent } from './app-pages/register-page/register-page.component'
 import { PopularRidesPageComponent } from './app-pages/popular-rides-page/popular-rides-page.component'
 import { VehiclesPageComponent } from './app-pages/vehicles-page/vehicles-page.component'
 import { VehicleDetailPageComponent } from './app-pages/vehicle-detail-page/vehicle-detail-page.component'
@@ -38,7 +38,7 @@ export const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent,
+    component: RegisterPageComponent,
     canActivate: [GuestGuard],
   },
   {

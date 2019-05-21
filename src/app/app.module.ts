@@ -18,7 +18,7 @@ import { HomePageComponent } from './app-pages/home-page/home-page.component'
 import { LoginPageComponent } from './app-pages/login-page/login-page.component'
 import { MaterialModule } from './shared/material.module'
 import { PopularRidesPageComponent } from './app-pages/popular-rides-page/popular-rides-page.component'
-import { RegisterComponent } from './app-pages/register-page/register-page.component'
+import { RegisterPageComponent } from './app-pages/register-page/register-page.component'
 import { SharedModule } from './shared/shared.module'
 import { VehicleDetailPageComponent } from './app-pages/vehicle-detail-page/vehicle-detail-page.component'
 import { VehiclesPageComponent } from './app-pages/vehicles-page/vehicles-page.component'
@@ -32,7 +32,7 @@ import { VehiclesPageComponent } from './app-pages/vehicles-page/vehicles-page.c
     HomePageComponent,
     LoginPageComponent,
     PopularRidesPageComponent,
-    RegisterComponent,
+    RegisterPageComponent,
     VehicleDetailPageComponent,
     VehiclesPageComponent,
   ],
