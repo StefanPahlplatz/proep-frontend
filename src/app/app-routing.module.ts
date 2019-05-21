@@ -25,7 +25,7 @@ export const routes: Routes = [
     component: HomePageComponent,
   },
   {
-    path: 'all',
+    path: 'recommendation',
     component: PopularRidesPageComponent,
   },
   {

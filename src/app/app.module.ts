@@ -7,16 +7,12 @@ import { HttpModule } from '@angular/http'
 import { MatNativeDateModule } from '@angular/material'
 import { NgModule } from '@angular/core'
 
-import { AccountMenuComponent } from './old-component/header/account-menu/account-menu.component'
 import { AdminPageComponent } from './app-pages/admin-page/admin-page.component'
-import { ApiCardComponent } from './old-component/api-card/api-card.component'
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
 import { ChangePasswordPageComponent } from './app-pages/change-password-page/change-password.component'
 import { CoreModule } from './core/core.module'
 import { ErrorPageComponent } from './app-pages/error-page/error-page.component'
-import { FooterComponent } from './old-component/footer/footer.component'
-import { HeaderComponent } from './old-component/header/header.component'
 import { HomePageComponent } from './app-pages/home-page/home-page.component'
 import { LoginPageComponent } from './app-pages/login-page/login-page.component'
 import { MaterialModule } from './shared/material.module'
@@ -28,15 +24,11 @@ import { VehiclesPageComponent } from './app-pages/vehicles-page/vehicles-page.c
 
 @NgModule({
   declarations: [
-    AccountMenuComponent,
     AdminPageComponent,
     PopularRidesPageComponent,
-    ApiCardComponent,
     AppComponent,
     ChangePasswordPageComponent,
     ErrorPageComponent,
-    FooterComponent,
-    HeaderComponent,
     HomePageComponent,
     LoginPageComponent,
     RegisterComponent,

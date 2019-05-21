@@ -9,7 +9,7 @@ import { Observable } from 'rxjs'
 import { map, filter, catchError } from 'rxjs/operators'
 
 import { SerializeHelper } from '../../shared/utilities/serialize-helper'
-import { RequestMethod } from '../../shared/enums/request-method'
+import { RequestMethod } from '../../models/enums/request-method'
 import { Router } from '@angular/router'
 
 @Injectable()
