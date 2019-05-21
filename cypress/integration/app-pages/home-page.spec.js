@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('Welcome page', () => {
+context('Home page', () => {
   beforeEach(() => {
     cy.visit('http://localhost:4200')
   })
@@ -28,6 +28,6 @@ context('Welcome page', () => {
   it('Search goes to next page', () => {
     // https://on.cypress.io/type
     cy.get('.btn').click()
-    cy.url().should('eq', 'http://localhost:4200/all')
+    cy.url().should('eq', 'http://localhost:4200/recommendation')
   })
 })
