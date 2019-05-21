@@ -5,12 +5,11 @@ import { RouterModule } from '@angular/router'
 import { ApiService } from './services/api.service'
 import { AuthService } from './services/auth.service'
 import { ConfigService } from './services/config.service'
-import { FooService } from './services/foo.service'
 import { UserService } from './services/user.service'
 
 @NgModule({
   declarations: [],
-  providers: [AuthService, ApiService, ConfigService, FooService, UserService],
+  providers: [AuthService, ApiService, ConfigService, UserService],
   imports: [CommonModule, RouterModule],
 })
 export class CoreModule {}

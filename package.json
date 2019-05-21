@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build --prod",
+    "build": "ng build --prod --aot",
     "lint": "ng lint && prettier --single-quote -l \"**/*.ts\"",
     "lint:fix": "pretty-quick",
     "e2e": "ng e2e",
