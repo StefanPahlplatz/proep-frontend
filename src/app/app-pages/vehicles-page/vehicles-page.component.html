@@ -1,0 +1,30 @@
+<div class="content">
+  <app-navbar [canSearch]="true" [hasBorder]="true"></app-navbar>
+  <div class="row">
+    <div class="col-xs-12">
+      <a></a>
+    </div>
+  </div>
+
+  <div class="container-fluid text-center">
+    <h2>Vehicles</h2>
+    <br />
+    <div class="row text-center slideanim">
+      <div class="col-sm-3" *ngFor="let vehicle of vehicles">
+        <div class="thumbnail">
+          <img
+            src="{{ vehicle.imagePath }}"
+            alt="{{ vehicle.brand }}"
+            style="max-height: 200px; max-width: 400px"
+          />
+          <a [routerLink]="[vehicle.id]">
+            <p>
+              <strong>{{ vehicle.brand + ' ' + vehicle.model }}</strong>
+            </p>
+          </a>
+          <p>Small description</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

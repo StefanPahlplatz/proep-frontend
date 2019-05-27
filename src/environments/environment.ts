@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   airRnD: {
-    baseUrl: '/api',
+    baseUrl: 'https://proep.inogo.nl/api',
   },
 }

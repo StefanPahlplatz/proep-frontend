@@ -3,19 +3,17 @@ import { MatToolbarModule, MatIconRegistry } from '@angular/material'
 import { RouterTestingModule } from '@angular/router/testing'
 import { TestBed, async } from '@angular/core/testing'
 
-import { ApiService } from './core/services/api.service'
+import { ApiService } from './services/api.service'
 import { AppComponent } from './app.component'
-import { AuthService } from './core/services/auth.service'
-import { ConfigService } from './core/services/config.service'
-import { FooService } from './core/services/foo.service'
-import { FooterComponent } from './component/footer/footer.component'
+import { AuthService } from './services/auth.service'
+import { ConfigService } from './services/config.service'
+import { UserService } from './services/user.service'
 import { MockApiService } from './core/mocks/api.service.mock'
-import { UserService } from './core/services/user.service'
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent, FooterComponent],
+      declarations: [AppComponent],
       imports: [RouterTestingModule, MatToolbarModule],
       providers: [
         MatIconRegistry,
@@ -25,7 +23,6 @@ describe('AppComponent', () => {
         },
         AuthService,
         UserService,
-        FooService,
         ConfigService,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
