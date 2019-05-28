@@ -1,0 +1,60 @@
+<div class="content">
+  <app-navbar [hasBorder]="true"></app-navbar>
+  <mat-card elevation="5">
+    <mat-card-subtitle>
+      <h2>AirRnD Login</h2>
+    </mat-card-subtitle>
+
+    <mat-card-title>
+      <h2>{{ title }}</h2>
+    </mat-card-title>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="username"
+            required
+            placeholder="Username"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="password"
+            required
+            type="password"
+            placeholder="Password"
+          />
+        </mat-form-field>
+        <button
+          type="submit"
+          [disabled]="!loginForm.form.valid || submitted"
+          mat-raised-button
+          color="primary"
+        >
+          Login
+        </button>
+      </form>
+      <br />
+      <div>
+        <button
+          matTooltip="Reset password if someone has changed it already!"
+          (click)="onResetCredentials()"
+          [disabled]="submitted"
+          mat-raised-button
+          color="accent"
+        >
+          Reset Credentials
+        </button>
+      </div>
+
+      <p [class]="notification.msgType" *ngIf="notification">
+        {{ notification.msgBody }}
+      </p>
+
+      <mat-spinner *ngIf="submitted" mode="indeterminate"></mat-spinner>
+    </mat-card-content>
+  </mat-card>
+</div>
