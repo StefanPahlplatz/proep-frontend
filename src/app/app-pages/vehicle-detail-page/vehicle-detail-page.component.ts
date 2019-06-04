@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { VehicleViewModel } from 'app/models/view-models/vehicle-view-model'
 
 @Component({
   selector: 'app-vehicle-detail-page',
@@ -6,7 +7,18 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./vehicle-detail-page.component.scss'],
 })
 export class VehicleDetailPageComponent implements OnInit {
-  constructor() {}
+  location: string = 'Amsterdam'
+  vehicle: VehicleViewModel
+
+  constructor() {
+    this.vehicle = {
+      id: 123456789,
+      brand: 'Tesla',
+      imagePath: '',
+      model: 'Model S',
+      vehicleType: 'Luxury',
+    }
+  }
 
   ngOnInit() {}
 }
