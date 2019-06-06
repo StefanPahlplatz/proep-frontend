@@ -5,24 +5,24 @@
 </div>
 
 <div class="container-fluid text-center">
-  <h2>Vehicles</h2>
+  <h2>Vehicles for {{ city }}</h2>
   <br />
   <div class="row text-center slideanim">
     <div class="col-sm-3" *ngFor="let vehicle of vehicles">
-      <div class="thumbnail">
-        <img
-          src="{{ vehicle.imagePath }}"
-          alt="{{ vehicle.make }}"
-          style="max-height: 200px; max-width: 400px"
-        />
-        <a href="#">
+      <a href="#">
+        <div class="thumbnail">
+          <img
+            src="{{ vehicle.imagePath }}"
+            alt="{{ vehicle.make }}"
+            style="max-height: 200px; max-width: 400px"
+          />
           <p>
             <strong>{{ vehicle.make + ' ' + vehicle.model }}</strong>
           </p>
-        </a>
 
-        <p>Small description</p>
-      </div>
+          <p>Small description</p>
+        </div>
+      </a>
     </div>
   </div>
 </div>

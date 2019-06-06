@@ -17,15 +17,10 @@ import { VehiclesComponent } from './vehicles/vehicles.component'
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
-  },
-  {
-    path: 'home',
     component: HomeComponent,
   },
   {
-    path: 'vehicles',
+    path: 'places/:place',
     component: VehiclesComponent,
   },
   {

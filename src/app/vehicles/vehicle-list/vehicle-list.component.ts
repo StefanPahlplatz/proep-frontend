@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Vehicle } from '../vehicle.model'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-vehicle-list',
@@ -58,7 +59,11 @@ export class VehicleListComponent implements OnInit {
     ),
   ]
 
-  constructor() {}
+  city: string
 
-  ngOnInit() {}
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.city = this.route.snapshot.paramMap.get('place')
+  }
 }
