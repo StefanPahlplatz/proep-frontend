@@ -22,7 +22,6 @@ export class HomePageComponent implements OnInit {
   }
 
   onClickSubmit(data) {
-    console.log(this.formdata)
     this.router.navigateByUrl(
       `/recommendation?location=${this.formdata.value.location}&from=${
         this.formdata.value.from
