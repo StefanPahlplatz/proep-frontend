@@ -12,42 +12,34 @@ export class PopularRidesPageComponent implements OnInit {
     {
       location: 'Paris',
       img: '/assets/images/paris.jpg',
-      route: '/places/paris',
     },
     {
       location: 'London',
       img: '/assets/images/london.jpg',
-      route: '/places/london',
     },
     {
       location: 'Tokyo',
       img: '/assets/images/tokyo.jpg',
-      route: '/places/tokyo',
     },
     {
       location: 'New York',
       img: '/assets/images/new-york.jpg',
-      route: '/places/new-york',
     },
     {
       location: 'San Francisco',
       img: '/assets/images/san-francisco.jpg',
-      route: '/places/paris',
     },
     {
       location: 'Prague',
       img: '/assets/images/prague.jpg',
-      route: '/places/prague',
     },
     {
       location: 'Florence',
       img: '/assets/images/florence.jpg',
-      route: '/places/florence',
     },
     {
       location: 'Rio de Janeiro',
       img: '/assets/images/rio-de-janeiro.jpg',
-      route: '/places/rio-de-janeiro',
     },
   ]
 
