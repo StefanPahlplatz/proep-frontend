@@ -1,8 +1,11 @@
 <app-navbar [canSearch]="true" [hasBorder]="true"></app-navbar>
 <div class="all-rides-container">
-  <h3>Recommended Locations</h3>
+  <h1 style="text-align: center; margin-bottom: 1em;">Recommended Locations</h1>
   <div class="recommended-location-container" [class.show]="showLocations">
-    <div class="d-flex align-content-stretch flex-wrap">
+    <div
+      class="d-flex align-content-stretch flex-wrap"
+      style="display: flex; justify-content: center;"
+    >
       <div
         class="card mb-4 mr-2 border-0 location-card"
         *ngFor="let location of locations"
@@ -19,18 +22,25 @@
       </div>
     </div>
   </div>
-  <button mat-button (click)="showLocations = !showLocations">
-    {{ showLocations ? 'Show less' : 'Show More' }}
-  </button>
-  <button mat-button *ngIf="showLocations" routerLink="/places">
-    Show all
-  </button>
+  <div style="display: flex; justify-content: center">
+    <button mat-button (click)="showLocations = !showLocations">
+      {{ showLocations ? 'Show less' : 'Show More' }}
+    </button>
+    <!--  <button mat-button *ngIf="showLocations" routerLink="/places">-->
+    <!--    Show all-->
+    <!--  </button>-->
+  </div>
 </div>
 
 <div class="all-rides-container">
-  <h3>Type Of Rentable Vehicles</h3>
+  <h1 style="text-align: center; margin-bottom: 1em;">
+    Type Of Rentable Vehicles
+  </h1>
   <div class="recommended-location-container" [class.show]="showVehicles">
-    <div class="d-flex align-content-stretch flex-wrap">
+    <div
+      class="d-flex align-content-stretch flex-wrap"
+      style="display: flex; justify-content: center;"
+    >
       <div
         class="card mb-4 mr-2 border-0 location-card"
         *ngFor="let vehicle of vehicles"
@@ -47,10 +57,12 @@
       </div>
     </div>
   </div>
-  <button mat-button (click)="showVehicles = !showVehicles">
-    {{ showVehicles ? 'Show less' : 'Show More' }}
-  </button>
-  <button mat-button *ngIf="showVehicles" routerLink="/vehicles">
-    Show all
-  </button>
+  <div style="display: flex; justify-content: center">
+    <button mat-button (click)="showVehicles = !showVehicles">
+      {{ showVehicles ? 'Show less' : 'Show More' }}
+    </button>
+    <!--  <button mat-button *ngIf="showVehicles" routerLink="/vehicles">-->
+    <!--    Show all-->
+    <!--  </button>-->
+  </div>
 </div>

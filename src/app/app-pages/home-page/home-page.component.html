@@ -4,7 +4,7 @@
 <div class="home-container">
   <div class="card">
     <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
-      <h2>Reserve a ride</h2>
+      <h2 style="font-weight: 600;">Reserve a ride</h2>
 
       <div class="form-group">
         <label for="location">Location</label>
@@ -15,6 +15,7 @@
           id="location"
           formControlName="location"
           placeholder="Anywhere"
+          autocomplete="off"
         />
       </div>
 
