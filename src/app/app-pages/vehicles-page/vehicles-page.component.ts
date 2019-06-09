@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { VehicleViewModel } from '../../models/view-models/vehicle-view-model'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-vehicles-page',
@@ -71,8 +72,19 @@ export class VehiclesPageComponent implements OnInit {
         'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/2018_Tesla_Model_S_75D.jpg/1920px-2018_Tesla_Model_S_75D.jpg',
     },
   ]
+  headerText: string
 
-  constructor() {}
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.headerText = 'Vehicles'
+      if (params.place) {
+        this.headerText += ` in ${params.place}`
+      }
+      if (params.type) {
+        this.headerText += ` of type ${params.type}`
+      }
+    })
+  }
 
   ngOnInit() {}
 }

@@ -7,27 +7,27 @@ context('Home page', () => {
 
   it('Type into the location input', () => {
     // https://on.cypress.io/type
-    cy.get('#locationInput').type('test123')
+    cy.get('#location').type('test123')
   })
 
   it('Type into the start date input', () => {
     // https://on.cypress.io/type
-    cy.get('#fromDateInput').type('01-01-2019')
+    cy.get('#from').type('2019-01-01')
   })
 
   it('Type into the to date input', () => {
     // https://on.cypress.io/type
-    cy.get('#tillDateInput').type('01-01-2019')
+    cy.get('#to').type('2019-01-01')
   })
 
   it('Select a car type', () => {
     // https://on.cypress.io/type
-    cy.get('#typeCarSelection').select('Family')
+    cy.get('#type').select('Family')
   })
 
   it('Search goes to next page', () => {
     // https://on.cypress.io/type
     cy.get('.btn').click()
-    cy.url().should('eq', 'http://localhost:4200/recommendation')
+    cy.url().should('contain', 'http://localhost:4200/recommendation')
   })
 })

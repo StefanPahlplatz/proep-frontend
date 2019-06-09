@@ -3,44 +3,49 @@
 <app-navbar [canSearch]="false"></app-navbar>
 <div class="home-container">
   <div class="card">
-    <form>
-      <h2>Reserve a ride</h2>
+    <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+      <h2 style="font-weight: 600;">Reserve a ride</h2>
 
       <div class="form-group">
-        <label for="locationInput">Location</label>
+        <label for="location">Location</label>
         <input
+          name="location"
           type="text"
           class="form-control"
-          id="locationInput"
+          id="location"
+          formControlName="location"
           placeholder="Anywhere"
+          autocomplete="off"
         />
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="fromDateInput">From</label>
+          <label for="from">From</label>
           <input
-            type="text"
+            type="date"
             class="form-control"
-            id="fromDateInput"
-            placeholder="dd/mm/yyyy"
+            id="from"
+            name="from"
+            formControlName="from"
           />
         </div>
 
         <div class="form-group col-md-6">
-          <label for="tillDateInput">Till</label>
+          <label for="to">Till</label>
           <input
-            type="text"
+            type="date"
+            name="to"
+            id="to"
             class="form-control"
-            id="tillDateInput"
-            placeholder="dd/mm/yyyy"
+            formControlName="to"
           />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="typeCarSelection">Type car</label>
-        <select class="form-control" id="typeCarSelection">
+        <label for="type">Type car</label>
+        <select class="form-control" id="type" formControlName="type">
           <option>Dream</option>
           <option>Family</option>
           <option>Fun</option>
@@ -49,11 +54,7 @@
       </div>
 
       <div class="text-right">
-        <button
-          type="submit"
-          class="btn btn-primary"
-          routerLink="/recommendation"
-        >
+        <button type="submit" class="btn btn-primary">
           Search
         </button>
       </div>
