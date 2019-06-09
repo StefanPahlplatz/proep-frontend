@@ -12,14 +12,14 @@
       >
         <a
           routerLink="/vehicles"
-          [queryParams]="{ id: location.location }"
+          [queryParams]="{ place: location.location }"
           class="text-reset"
         >
-          <img src="{{ location.img }}" class="location-img" />
-          <div class="card-img-overlay">
+          <img src="{{ location.img }}" class="location-img round" />
+          <div class="card-img-overlay round">
             <h4 class="card-title">{{ location.location }}</h4>
           </div>
-          <div class="overlay">
+          <div class="overlay round">
             <div class="overlay-text">{{ location.location }}</div>
           </div>
         </a>
@@ -46,12 +46,16 @@
         class="card mb-4 mr-2 border-0 location-card"
         *ngFor="let vehicle of vehicles"
       >
-        <a routerLink="{{ vehicle.route }}" class="text-reset">
-          <img src="{{ vehicle.img }}" class="location-img" />
-          <div class="card-img-overlay">
+        <a
+          routerLink="/vehicles"
+          [queryParams]="{ type: vehicle.route }"
+          class="text-reset"
+        >
+          <img src="{{ vehicle.img }}" class="location-img round" />
+          <div class="card-img-overlay round">
             <h4 class="card-title">{{ vehicle.type }}</h4>
           </div>
-          <div class="overlay">
+          <div class="overlay round">
             <div class="overlay-text">{{ vehicle.type }}</div>
           </div>
         </a>

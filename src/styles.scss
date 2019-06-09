@@ -20,6 +20,12 @@ app-footer {
   bottom: -1px;
 }
 
+.round {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
 /*
   * Cool loading animation
   */

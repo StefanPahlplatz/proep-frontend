@@ -47,32 +47,32 @@ export class PopularRidesPageComponent implements OnInit {
     {
       type: 'Dream Car',
       img: '/assets/images/dream-car.jpg',
-      route: '/vehicles/dream-car',
+      route: 'dream-car',
     },
     {
       type: 'Family Car',
       img: '/assets/images/family-car.jpg',
-      route: '/vehicles/family-car',
+      route: 'family-car',
     },
     {
       type: 'Eco Car',
       img: '/assets/images/eco-car.jpg',
-      route: '/vehicles/eco-car',
+      route: 'eco-car',
     },
     {
       type: 'Oldtimer',
       img: '/assets/images/oldtimer.jpg',
-      route: '/vehicles/oldtimer',
+      route: 'oldtimer',
     },
     {
       type: 'Fun Car',
       img: '/assets/images/fun-car.jpg',
-      route: '/vehicles/fun-car',
+      route: 'fun-car',
     },
     {
       type: 'SUV',
       img: '/assets/images/suv.jpg',
-      route: '/vehicles/suv',
+      route: 'suv',
     },
   ]
 
