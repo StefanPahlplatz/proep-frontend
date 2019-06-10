@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { VehicleViewModel } from 'app/models/view-models/vehicle-view-model'
+import { VehicleService } from 'app/services/vehicle.service'
+import { IVehicle } from 'app/models/interfaces/vehicle'
 
 @Component({
   selector: 'app-vehicle-detail-page',
@@ -8,17 +10,22 @@ import { VehicleViewModel } from 'app/models/view-models/vehicle-view-model'
 })
 export class VehicleDetailPageComponent implements OnInit {
   location: string = 'Amsterdam'
-  vehicle: VehicleViewModel
+  urlstring: string = window.location.href
+  vehicle: IVehicle
 
-  constructor() {
-    this.vehicle = {
-      id: 123456789,
-      brand: 'Tesla',
-      imagePath: '',
-      model: 'Model S',
-      vehicleType: 'Luxury',
-    }
+  constructor(private vehicleService: VehicleService) {}
+
+  ngOnInit() {
+    this.vehicleService
+      .getVehicleWithId(getLastNumberOfString(this.urlstring))
+      .subscribe(data => (this.vehicle = data))
   }
+}
 
-  ngOnInit() {}
+function getLastNumberOfString(str) {
+  var allNumbers = str
+    .replace(/[^0-9]/g, ' ')
+    .trim()
+    .split(/\s+/)
+  return parseInt(allNumbers[allNumbers.length - 1], 10)
 }
