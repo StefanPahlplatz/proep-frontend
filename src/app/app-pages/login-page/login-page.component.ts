@@ -88,8 +88,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       .pipe(
         // show me the animation
         delay(1000),
-        catchError(error => {
-          console.error('Something went wrong', error)
+        catchError(() => {
           this.submitted = false
           this.notification = {
             msgType: 'error',
@@ -98,11 +97,10 @@ export class LoginPageComponent implements OnInit, OnDestroy {
           return of()
         })
       )
-      .subscribe(data => {
-        console.log('success', data)
-
-        this.userService.getMyInfo().subscribe()
-        this.router.navigate([this.returnUrl])
+      .subscribe((isAuthenticated: boolean) => {
+        if (isAuthenticated) {
+          this.router.navigate([this.returnUrl])
+        }
       })
   }
 }

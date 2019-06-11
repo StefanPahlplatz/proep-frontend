@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import {
-  ActivatedRouteSnapshot,
   CanActivate,
   Router,
+  ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router'
 
@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth.service'
 @Injectable({
   providedIn: 'root',
 })
-export class AdminGuard implements CanActivate {
+export class UserGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {}
 
   public canActivate(
@@ -22,7 +22,7 @@ export class AdminGuard implements CanActivate {
     let isAuthorized = false
 
     if (userAuthorities) {
-      isAuthorized = userAuthorities.some(a => a.authority === 'ROLE_ADMIN')
+      isAuthorized = userAuthorities.some(a => a.authority === 'ROLE_USER')
     }
 
     if (!isAuthorized && this.authService.isAuthenticated()) {
