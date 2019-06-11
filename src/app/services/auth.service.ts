@@ -90,6 +90,10 @@ export class AuthService {
     return authorities
   }
 
+  public getAccessToken(): string {
+    return sessionStorage.getItem('airRnD.accessToken')
+  }
+
   private saveTokenAndUserInfo(userLoginDto: UserLoginDto): void {
     sessionStorage.setItem(
       'airRnD.accessToken',
