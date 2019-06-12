@@ -26,9 +26,7 @@ export class VehicleDetailPageComponent implements OnInit {
     longitude: null,
     latitude: null,
     timesRented: null,
-    user: {
-      city: null,
-    },
+    user: null,
     availables: null,
     reservations: null,
     images: null,
