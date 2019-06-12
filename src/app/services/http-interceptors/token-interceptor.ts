@@ -40,10 +40,5 @@ export class TokenInterceptor implements HttpInterceptor {
         return next.handle(newReq)
       })
     )
-    // const token = this.authService.getAccessToken();
-    // const newReq = req.clone({
-    //   headers: req.headers.set('Authorization', `Bearer ${token}`),
-    // });
-    // return next.handle(newReq);
   }
 }

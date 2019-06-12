@@ -126,6 +126,7 @@ export class AuthService {
   }
 
   private saveTokenAndUserInfo(userLoginDto: UserLoginDto): void {
+    sessionStorage.clear()
     sessionStorage.setItem(
       'airRnD.accessToken',
       userLoginDto.userToken.accessToken
