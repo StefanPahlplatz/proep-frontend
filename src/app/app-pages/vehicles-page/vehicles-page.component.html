@@ -28,8 +28,9 @@
           <div class="thumbnail">
             <img
               src="{{
-                vehicle.images[0].path ||
-                  'https://conceptualminds.com/wp-content/uploads/2015/08/car-mechanic-website-placeholder-2.jpg'
+                vehicle.images.length !== 0
+                  ? vehicle.images[0].path
+                  : 'https://conceptualminds.com/wp-content/uploads/2015/08/car-mechanic-website-placeholder-2.jpg'
               }}"
               alt="{{ vehicle.brand }}"
               style="
@@ -46,7 +47,7 @@
             </h3>
             <p style="color: #212529; margin-top: -12px; margin-bottom: 12px;">
               Type: {{ vehicle.type }}<br />
-              Price: {{ vehicle.price }}<br />
+              Price: {{ vehicle.price || 'Unknown' }}<br />
               Owner: {{ vehicle.user.username }}
             </p>
           </div>

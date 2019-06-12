@@ -85,6 +85,7 @@ export class VehicleDetailPageComponent implements OnInit {
           vehicleId: this.vehicleId,
           startDate: data.fromDateInput,
           endDate: data.tillDateInput,
+          price: this.vehicle.price,
         })
         .subscribe(re => console.log(re))
 
