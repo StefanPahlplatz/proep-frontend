@@ -1,5 +1,4 @@
 import { AvailableDto } from './../dtos/available-dto'
-import { ImageDto } from './../dtos/image-dto'
 import { UserDto } from './../dtos/user-dto'
 import { ReservationDto } from './../dtos/reservation-dto'
 
@@ -21,4 +20,10 @@ export interface IVehicle {
   reservations: ReservationDto[]
   images: ImageDto[]
   rented: boolean
+}
+
+export interface ImageDto {
+  id: number
+  path: string
+  timestamp: Date
 }

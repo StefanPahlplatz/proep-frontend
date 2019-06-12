@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core'
-import { VehicleViewModel } from 'app/models/view-models/vehicle-view-model'
-import { VehicleService } from 'app/services/vehicle.service'
-import { IVehicle } from 'app/models/interfaces/vehicle'
-import { Route, Router, ActivatedRoute } from '@angular/router'
-import { AuthService } from 'app/services/auth.service'
+import { FormControl, FormGroup } from '@angular/forms'
+import { HttpClient } from '@angular/common/http'
+import { environment } from '../../../environments/environment'
+import { AuthService } from '../../services/auth.service'
+import { UserDto } from '../../models/dtos/user-dto'
+import { ActivatedRoute, Params } from '@angular/router'
+import { IVehicle } from '../../models/interfaces/vehicle'
+import { VehicleService } from '../../services/vehicle.service'
 
 @Component({
   selector: 'app-vehicle-detail-page',
@@ -12,6 +15,11 @@ import { AuthService } from 'app/services/auth.service'
 })
 export class VehicleDetailPageComponent implements OnInit {
   location: string = 'Amsterdam'
+  formdata: FormGroup
+  isLoading: boolean
+  isLoggedIn: boolean
+  user: any
+  vehicleId: string
   urlstring: string = window.location.href
   vehicle: IVehicle = {
     id: null,
@@ -29,30 +37,69 @@ export class VehicleDetailPageComponent implements OnInit {
     user: null,
     availables: null,
     reservations: null,
-    images: null,
+    images: [],
     rented: null,
   }
 
   constructor(
     private vehicleService: VehicleService,
-    private route: ActivatedRoute,
-    private authService: AuthService
+    private http: HttpClient,
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.authService.getCurrentUser().subscribe(user => {
       console.log(user.id)
     })
     console.log(this.route.snapshot.paramMap.get(' id'))
     this.vehicleService
       .getVehicleWithId(getLastNumberOfString(this.urlstring))
-      .subscribe(data => (this.vehicle = data))
+      .subscribe(data => {
+        this.vehicle = data
+        console.log(this.vehicle)
+      })
+    this.formdata = new FormGroup({
+      fromDateInput: new FormControl(''),
+      tillDateInput: new FormControl(''),
+    })
+    this.isLoggedIn = this.authService.isAuthenticated()
+    this.authService.getCurrentUser().subscribe((user: UserDto) => {
+      this.user = user
+      console.log({ user })
+    })
+    this.route.queryParams.subscribe((queryparam: Params) => {
+      console.log(queryparam)
+    })
+    this.route.params.subscribe(params => {
+      this.vehicleId = params.id
+    })
+  }
+
+  onClickSubmit(data) {
+    console.log(data)
+    if (data.fromDateInput && data.tillDateInput) {
+      this.http
+        .post<{}>(`${environment.airRnD.baseUrl}/reservation/`, {
+          userId: this.user.id,
+          vehicleId: this.vehicleId,
+          startDate: data.fromDateInput,
+          endDate: data.tillDateInput,
+          price: this.vehicle.price,
+        })
+        .subscribe(re => console.log(re))
+
+      this.isLoading = true
+      setTimeout(() => {
+        this.isLoading = false
+      }, 1400)
+    }
   }
 }
 
-//ghetto
+// ghetto
 function getLastNumberOfString(str) {
-  var allNumbers = str
+  const allNumbers = str
     .replace(/[^0-9]/g, ' ')
     .trim()
     .split(/\s+/)

@@ -20,14 +20,18 @@
                 -moz-border-radius: 10px;
                 border-radius: 10px;
                 width: 360px;
-                height: 290px;
+                height: 311px;
                 padding: 0;
                 margin: 16px;"
       >
         <a [routerLink]="[vehicle.id]">
           <div class="thumbnail">
             <img
-              src="https://conceptualminds.com/wp-content/uploads/2015/08/car-mechanic-website-placeholder-2.jpg"
+              src="{{
+                vehicle.images.length !== 0
+                  ? vehicle.images[0].path
+                  : 'https://conceptualminds.com/wp-content/uploads/2015/08/car-mechanic-website-placeholder-2.jpg'
+              }}"
               alt="{{ vehicle.brand }}"
               style="
                   object-fit: cover;
@@ -41,9 +45,9 @@
             <h3 style="color: #212529; margin-top: 8px; font-weight: 600;">
               {{ vehicle.make + ' ' + vehicle.model }}
             </h3>
-            <p style="color: #212529; margin-top: -12px;">
+            <p style="color: #212529; margin-top: -12px; margin-bottom: 12px;">
               Type: {{ vehicle.type }}<br />
-              Price: {{ vehicle.price }}<br />
+              Price: {{ vehicle.price || 'Unknown' }}<br />
               Owner: {{ vehicle.user.username }}
             </p>
           </div>
