@@ -1,0 +1,22 @@
+.content {
+  margin: 30px 10vw 0;
+
+  .user-info {
+    text-transform: uppercase;
+
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        list-style: none;
+
+        span {
+          font-weight: bold;
+          width: 50%;
+          float: left;
+        }
+      }
+    }
+  }
+}

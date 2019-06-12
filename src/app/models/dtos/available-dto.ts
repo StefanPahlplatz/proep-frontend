@@ -1,4 +1,5 @@
 export interface AvailableDto {
   id: number
-  startDate: Date
+  startdate: Date
+  enddate: Date
 }

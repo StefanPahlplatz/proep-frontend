@@ -1,13 +1,10 @@
-import { UserDto } from '../dtos/user-dto'
-
-export interface IVehicleImage {
-  id: number
-  path: string
-}
+import { AvailableDto } from './../dtos/available-dto'
+import { UserDto } from './../dtos/user-dto'
+import { ReservationDto } from './../dtos/reservation-dto'
 
 export interface IVehicle {
   id: number
-  timestamp: null
+  timestamp: Date
   registration: string
   colour: string
   mileage: number
@@ -19,8 +16,14 @@ export interface IVehicle {
   latitude: number
   timesRented: number
   user: UserDto
-  availables: []
-  reservations: []
-  images: IVehicleImage[]
+  availables: AvailableDto[]
+  reservations: ReservationDto[]
+  images: ImageDto[]
   rented: boolean
+}
+
+export interface ImageDto {
+  id: number
+  path: string
+  timestamp: Date
 }

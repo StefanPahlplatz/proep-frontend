@@ -1,2 +1,69 @@
 <app-navbar [hasBorder]="true"></app-navbar>
-{{ user | json }}
+
+<div class="content">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card">
+        <img src="assets/images/default-profile.png" class="card-img-top" />
+        <div class="card-body user-info">
+          <h5 class="card-title">My Profile</h5>
+          <ul>
+            <li>
+              <span>First Name</span>
+              {{ user.firstname ? user.firstname : '-' }}
+            </li>
+            <li>
+              <span>Last Name</span>
+              {{ user.lastname ? user.lastname : '-' }}
+            </li>
+            <li>
+              <span>Address</span>
+              {{ user.address ? user.address : '-' }}
+            </li>
+            <li>
+              <span>City</span>
+              {{ user.city ? user.city : '-' }}
+            </li>
+            <li>
+              <span>Email</span>
+              {{ user.email ? user.email : '-' }}
+            </li>
+            <li>
+              <span>Telephone</span>
+              {{ user.telephone ? user.telephone : '-' }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="card mb-4" *ngIf="!ownerVehicles || !ownerVehicles.length">
+        <div class="card-body">
+          <p>No vehicle added.</p>
+        </div>
+      </div>
+
+      <div class="card mb-4" *ngFor="let vehicle of ownerVehicles">
+        <div class="card-body">
+          <h5 class="card-title">
+            <strong>{{ vehicle.make + ' ' + vehicle.model }}</strong>
+          </h5>
+          <h6><strong>Reservations:</strong></h6>
+          <p *ngIf="!vehicle.reservations || !vehicle.reservations.length">
+            No reservation
+          </p>
+          <p class="card-text" *ngFor="let reservation of vehicle.reservations">
+            <strong>Date:</strong> {{ reservation.startdate | date: 'short' }} -
+            {{ reservation.enddate | date: 'short' }}
+            <br />
+            <strong>Returned:</strong>{{ reservation.returned ? 'Yes' : 'No' }}
+          </p>
+          <a href="#" class="btn btn-primary">View</a>
+        </div>
+        <div class="card-footer text-muted">
+          {{ vehicle.timestamp | date }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
