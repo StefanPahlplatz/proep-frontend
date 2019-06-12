@@ -1,3 +1,5 @@
+import { UserDto } from '../dtos/user-dto'
+
 export interface IVehicleImage {
   id: number
   path: string
@@ -16,7 +18,7 @@ export interface IVehicle {
   longitude: number
   latitude: number
   timesRented: number
-  user: {}
+  user: UserDto
   availables: []
   reservations: []
   images: IVehicleImage[]
