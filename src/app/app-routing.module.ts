@@ -15,6 +15,7 @@ import { PopularRidesPageComponent } from './app-pages/popular-rides-page/popula
 import { VehiclesPageComponent } from './app-pages/vehicles-page/vehicles-page.component'
 import { VehicleDetailPageComponent } from './app-pages/vehicle-detail-page/vehicle-detail-page.component'
 import { UserProfilePageComponent } from './app-pages/user-profile-page/user-profile-page.component'
+import { VehicleCreationComponent } from './app-pages/vehicle-creation/vehicle-creation.component'
 
 export const routes: Routes = [
   {
@@ -63,6 +64,11 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: UserProfilePageComponent,
+    canActivate: [LoginGuard, UserGuard],
+  },
+  {
+    path: 'vehicle-creation',
+    component: VehicleCreationComponent,
     canActivate: [LoginGuard, UserGuard],
   },
   {

@@ -96,4 +96,15 @@ export class VehiclesPageComponent implements OnInit {
       .getVehicles()
       .subscribe(data => (this.vehiclesReal = data))
   }
+
+  getImage(id: number): string {
+    if (
+      !this.vehiclesReal.some(v => v.id === id) ||
+      this.vehiclesReal.filter(v => v.id == id)[0].images.length < 1
+    ) {
+      return 'https://conceptualminds.com/wp-content/uploads/2015/08/car-mechanic-website-placeholder-2.jpg'
+    }
+
+    return this.vehiclesReal.filter(v => v.id == id)[0].images[0].path
+  }
 }

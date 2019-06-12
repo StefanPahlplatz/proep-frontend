@@ -25,6 +25,13 @@ export class VehicleService {
     return this.http.get<IVehicle>(this.baseApiUrl + 'city/' + city)
   }
 
+  makeVehicle(id: number, numberPlate: string): Observable<any> {
+    return this.http.post<any>(this.baseApiUrl, {
+      vehicleId: id.toString(),
+      registration: numberPlate,
+    })
+  }
+
   // Not implemented yet
   // getVehicleByOwner(user: string): Observable<IVehicle> {
   //   return this.http.get<IVehicle>(this.baseApiUrl + user);

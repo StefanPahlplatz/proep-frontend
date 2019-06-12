@@ -11,8 +11,8 @@ import { AuthService } from 'app/services/auth.service'
   styleUrls: ['./vehicle-detail-page.component.scss'],
 })
 export class VehicleDetailPageComponent implements OnInit {
-  location: string = 'Amsterdam'
   urlstring: string = window.location.href
+  currentUserId: number = null
   vehicle: IVehicle = {
     id: null,
     timestamp: null,
@@ -42,9 +42,10 @@ export class VehicleDetailPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.getCurrentUser().subscribe(user => {
-      console.log(user.id)
-    })
+    this.authService
+      .getCurrentUser()
+      .subscribe(user => (this.currentUserId = user.id))
+
     console.log(this.route.snapshot.paramMap.get(' id'))
     this.vehicleService
       .getVehicleWithId(getLastNumberOfString(this.urlstring))
