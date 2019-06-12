@@ -27,7 +27,7 @@ export class ApiService {
     const options = {
       headers: this.headers,
       params: {},
-      withCredentials: true,
+      withCredentials: false,
     }
 
     if (args) {
@@ -63,7 +63,7 @@ export class ApiService {
   ): Observable<any> {
     const req = new HttpRequest(method, path, body, {
       headers: customHeaders || this.headers,
-      withCredentials: true,
+      withCredentials: false,
     })
 
     return this.http.request(req).pipe(

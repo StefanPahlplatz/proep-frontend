@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "start-secure": "ng serve --open --ssl=true --sslCert=./ssl/server.crt --sslKey=./ssl/server.key",
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build --prod --aot",
     "lint": "ng lint && prettier --single-quote -l \"**/*.ts\"",

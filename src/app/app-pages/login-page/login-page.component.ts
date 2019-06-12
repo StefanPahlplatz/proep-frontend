@@ -7,6 +7,7 @@ import { delay, takeUntil, catchError } from 'rxjs/operators'
 import { AuthService } from '../../services/auth.service'
 import { IDisplayMessage } from '../../models/interfaces/display-message'
 import { UserService } from '../../services/user.service'
+import { HttpErrorResponse } from '@angular/common/http'
 
 @Component({
   selector: 'app-login-page',
@@ -88,21 +89,28 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       .pipe(
         // show me the animation
         delay(1000),
-        catchError(error => {
-          console.error('Something went wrong', error)
+        catchError((error: HttpErrorResponse) => {
           this.submitted = false
-          this.notification = {
-            msgType: 'error',
-            msgBody: 'Incorrect username or password.',
+
+          if (error.status >= 400 && error.status < 500) {
+            this.notification = {
+              msgType: 'error',
+              msgBody: 'Incorrect username or password.',
+            }
+          } else if (error.status >= 500) {
+            this.notification = {
+              msgType: 'error',
+              msgBody: 'Something went wrong in the server.',
+            }
           }
+
           return of()
         })
       )
-      .subscribe(data => {
-        console.log('success', data)
-
-        this.userService.getMyInfo().subscribe()
-        this.router.navigate([this.returnUrl])
+      .subscribe((isAuthenticated: boolean) => {
+        if (isAuthenticated) {
+          this.router.navigate([this.returnUrl])
+        }
       })
   }
 }
