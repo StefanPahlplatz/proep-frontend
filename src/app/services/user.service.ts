@@ -1,3 +1,4 @@
+import { JsonFormatConvertor } from './../shared/utilities/json-format-convertor'
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { map } from 'rxjs/operators'
@@ -6,6 +7,7 @@ import { ApiService } from './api.service'
 import { ConfigService } from './config.service'
 import { UserDto } from '../models/dtos/user-dto'
 import { environment } from '../../environments/environment'
+import { Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
@@ -48,7 +50,14 @@ export class UserService {
     return this.apiService.get(this.config.users_url)
   }
 
-  public getUserByUserObject(user: UserDto) {
-    this.http.post<UserDto>(`${this.baseUrl}/user`, user)
+  public getUserById(userId: number): Observable<UserDto> {
+    return this.http.get<UserDto>(`${this.baseUrl}/whoami`).pipe(
+      map(response => {
+        const convertedData: UserDto = JsonFormatConvertor.objectKeysToCamelCase(
+          response
+        )
+        return convertedData
+      })
+    )
   }
 }

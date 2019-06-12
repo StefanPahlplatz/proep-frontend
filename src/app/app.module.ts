@@ -1,3 +1,4 @@
+import { LogoutPageComponent } from './app-pages/logout-page/logout-page.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { BrowserModule } from '@angular/platform-browser'
 import { CommonModule } from '@angular/common'
@@ -33,6 +34,7 @@ import { TokenInterceptor } from './services/http-interceptors/token-interceptor
     ErrorPageComponent,
     HomePageComponent,
     LoginPageComponent,
+    LogoutPageComponent,
     PopularRidesPageComponent,
     RegisterPageComponent,
     VehicleDetailPageComponent,

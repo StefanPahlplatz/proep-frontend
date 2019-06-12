@@ -23,10 +23,4 @@ export class NavbarComponent implements OnInit {
   hasSignedIn(): boolean {
     return this.authService.isAuthenticated()
   }
-
-  logout() {
-    this.authService.logout().subscribe(res => {
-      this.router.navigate(['/login'])
-    })
-  }
 }

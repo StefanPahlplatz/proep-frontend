@@ -1,3 +1,4 @@
+import { TokenDto } from './../models/dtos/token-dto'
 import { HttpHeaders, HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
@@ -62,10 +63,8 @@ export class AuthService {
       )
   }
 
-  public logout(): Observable<any> {
-    return this.http
-      .post<any>(`${this.baseUrl}/logout`, {})
-      .pipe(map(() => this.clearSession()))
+  public logout(): void {
+    sessionStorage.clear()
   }
 
   public changePassword(passwordChanger: any): Observable<any> {
@@ -84,6 +83,17 @@ export class AuthService {
     }
   }
 
+  public getCurrentUser(): Observable<UserDto> {
+    return this.http.get<UserDto>(`${this.baseUrl}/whoami`).pipe(
+      map(response => {
+        const convertedData: UserDto = JsonFormatConvertor.objectKeysToCamelCase(
+          response
+        )
+        return convertedData
+      })
+    )
+  }
+
   public getUserAuthorities(): AuthorityDto[] {
     const authoritiesJson = sessionStorage.getItem('airRnD.user.authorities')
     const authorities: AuthorityDto[] = JSON.parse(authoritiesJson)
@@ -92,6 +102,27 @@ export class AuthService {
 
   public getAccessToken(): string {
     return sessionStorage.getItem('airRnD.accessToken')
+  }
+
+  public getRefreshToken(): Observable<TokenDto> {
+    return this.http
+      .get<TokenDto>(`${this.baseUrl}/refresh`, {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.getAccessToken()}`,
+        }),
+      })
+      .pipe(
+        map(response => {
+          const convertedData: TokenDto = JsonFormatConvertor.objectKeysToCamelCase(
+            response
+          )
+          sessionStorage.setItem(
+            'airRnD.accessToken',
+            convertedData.accessToken
+          )
+          return convertedData
+        })
+      )
   }
 
   private saveTokenAndUserInfo(userLoginDto: UserLoginDto): void {
@@ -107,10 +138,5 @@ export class AuthService {
       'airRnD.user.authorities',
       JSON.stringify(userLoginDto.loggedInUser.authorities)
     )
-    sessionStorage.setItem('airRnD.user', JSON.stringify(userLoginDto))
-  }
-
-  private clearSession(): void {
-    sessionStorage.clear()
   }
 }
