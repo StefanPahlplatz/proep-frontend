@@ -1,12 +1,12 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { HttpErrorResponse } from '@angular/common/http'
 import { Subject, of } from 'rxjs'
 import { delay, takeUntil, catchError } from 'rxjs/operators'
 
 import { AuthService } from '../../services/auth.service'
 import { IDisplayMessage } from '../../models/interfaces/display-message'
-import { UserService } from '../../services/user.service'
 
 @Component({
   selector: 'app-register',
@@ -24,7 +24,6 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject<void>()
 
   constructor(
-    private userService: UserService,
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
@@ -75,9 +74,8 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
       .pipe(
         // show me the animation
         delay(1000),
-        catchError(error => {
+        catchError((error: HttpErrorResponse) => {
           this.submitted = false
-          console.error('Sign up error', error)
           this.notification = {
             msgType: 'error',
             msgBody: error.error.errorMessage,
@@ -85,12 +83,15 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
           return of()
         })
       )
-      .subscribe(data => {
-        console.log('Successfully signed up', data)
-        this.authService.login(this.form.value).subscribe(() => {
-          this.userService.getMyInfo().subscribe()
-        })
-        this.router.navigate([this.returnUrl])
+      .subscribe((isRegistered: boolean) => {
+        if (isRegistered) {
+          this.router.navigate(['login'])
+        } else {
+          this.notification = {
+            msgType: 'error',
+            msgBody: 'Failed to register',
+          }
+        }
       })
   }
 }

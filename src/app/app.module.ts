@@ -1,9 +1,10 @@
+import { LogoutPageComponent } from './app-pages/logout-page/logout-page.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { BrowserModule } from '@angular/platform-browser'
 import { CommonModule } from '@angular/common'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { HttpModule } from '@angular/http'
 import { MatNativeDateModule } from '@angular/material'
 import { NgModule } from '@angular/core'
@@ -20,8 +21,10 @@ import { MaterialModule } from './shared/material.module'
 import { PopularRidesPageComponent } from './app-pages/popular-rides-page/popular-rides-page.component'
 import { RegisterPageComponent } from './app-pages/register-page/register-page.component'
 import { SharedModule } from './shared/shared.module'
+import { UserProfilePageComponent } from './app-pages/user-profile-page/user-profile-page.component'
 import { VehicleDetailPageComponent } from './app-pages/vehicle-detail-page/vehicle-detail-page.component'
 import { VehiclesPageComponent } from './app-pages/vehicles-page/vehicles-page.component'
+import { TokenInterceptor } from './services/http-interceptors/token-interceptor'
 
 @NgModule({
   declarations: [
@@ -31,10 +34,12 @@ import { VehiclesPageComponent } from './app-pages/vehicles-page/vehicles-page.c
     ErrorPageComponent,
     HomePageComponent,
     LoginPageComponent,
+    LogoutPageComponent,
     PopularRidesPageComponent,
     RegisterPageComponent,
     VehicleDetailPageComponent,
     VehiclesPageComponent,
+    UserProfilePageComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -51,7 +56,13 @@ import { VehiclesPageComponent } from './app-pages/vehicles-page/vehicles-page.c
     RouterModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

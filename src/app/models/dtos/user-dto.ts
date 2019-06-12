@@ -1,6 +1,5 @@
-import { VehicleDto } from './vehicle-dto'
 import { ReservationDto } from './reservation-dto'
-import { ReviewDto } from './review-dto'
+import { AuthorityDto } from './authority-dto'
 
 export interface UserDto {
   id: number
@@ -13,8 +12,6 @@ export interface UserDto {
   city: string
   email: string
   telephone: string
-  vehicles: VehicleDto[]
   reservations: ReservationDto[]
-  reviews: ReviewDto[]
-  // authorities?
+  authorities: AuthorityDto[]
 }

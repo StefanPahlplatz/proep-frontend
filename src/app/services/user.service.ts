@@ -1,16 +1,26 @@
-import { map } from 'rxjs/operators'
+import { JsonFormatConvertor } from './../shared/utilities/json-format-convertor'
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
+import { map } from 'rxjs/operators'
 
 import { ApiService } from './api.service'
 import { ConfigService } from './config.service'
+import { UserDto } from '../models/dtos/user-dto'
+import { environment } from '../../environments/environment'
+import { Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   public currentUser: any
+  private baseUrl = environment.airRnD.baseUrl
 
-  constructor(private apiService: ApiService, private config: ConfigService) {}
+  constructor(
+    private apiService: ApiService,
+    private config: ConfigService,
+    private http: HttpClient
+  ) {}
 
   public initUser() {
     const promise = this.apiService
@@ -38,5 +48,16 @@ export class UserService {
 
   public getAll() {
     return this.apiService.get(this.config.users_url)
+  }
+
+  public getUserById(userId: number): Observable<UserDto> {
+    return this.http.get<UserDto>(`${this.baseUrl}/whoami`).pipe(
+      map(response => {
+        const convertedData: UserDto = JsonFormatConvertor.objectKeysToCamelCase(
+          response
+        )
+        return convertedData
+      })
+    )
   }
 }

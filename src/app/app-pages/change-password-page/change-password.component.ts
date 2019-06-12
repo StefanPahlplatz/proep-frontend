@@ -1,10 +1,12 @@
+import { HttpErrorResponse } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
-import { mergeMap, delay } from 'rxjs/operators'
+import { mergeMap, delay, catchError } from 'rxjs/operators'
 
 import { AuthService } from '../../services/auth.service'
 import { IDisplayMessage } from '../../models/interfaces/display-message'
+import { of } from 'rxjs'
 
 @Component({
   selector: 'app-change-password-page',
@@ -65,25 +67,24 @@ export class ChangePasswordPageComponent implements OnInit {
       .pipe(
         // show me the animation
         delay(1000),
-        mergeMap(() => this.authService.logout())
-      )
-      .subscribe(
-        () => {
-          this.router.navigate([
-            '/login',
-            {
-              msgType: 'success',
-              msgBody: 'Success! Please sign in with your new password.',
-            },
-          ])
-        },
-        error => {
+        catchError((error: HttpErrorResponse) => {
           this.submitted = false
           this.notification = {
             msgType: 'error',
             msgBody: 'Invalid old password.',
           }
-        }
+          return of()
+        })
       )
+      .subscribe(() => {
+        this.authService.logout()
+        this.router.navigate([
+          '/login',
+          {
+            msgType: 'success',
+            msgBody: 'Success! Please sign in with your new password.',
+          },
+        ])
+      })
   }
 }
