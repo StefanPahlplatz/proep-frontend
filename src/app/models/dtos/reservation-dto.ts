@@ -1,5 +1,3 @@
-import { ReviewDto } from './review-dto'
-
 export interface ReservationDto {
   id: number
   cancelled: boolean
@@ -8,4 +6,11 @@ export interface ReservationDto {
   price: number
   returned: boolean
   reviews: ReviewDto[]
+}
+
+export interface ReviewDto {
+  id: number
+  rating: number
+  type: string
+  comment: string
 }
