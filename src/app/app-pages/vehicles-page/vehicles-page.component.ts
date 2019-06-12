@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { VehicleViewModel } from '../../models/view-models/vehicle-view-model'
 import { ActivatedRoute } from '@angular/router'
+import { VehicleService } from 'app/services/vehicle.service'
 
 @Component({
   selector: 'app-vehicles-page',
@@ -8,6 +9,7 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./vehicles-page.component.scss'],
 })
 export class VehiclesPageComponent implements OnInit {
+  public vehiclesReal = []
   vehicles: VehicleViewModel[] = [
     {
       id: 1,
@@ -74,7 +76,10 @@ export class VehiclesPageComponent implements OnInit {
   ]
   headerText: string
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private vehicleService: VehicleService
+  ) {
     this.activatedRoute.queryParams.subscribe(params => {
       this.headerText = 'Vehicles'
       if (params.place) {
@@ -86,5 +91,9 @@ export class VehiclesPageComponent implements OnInit {
     })
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.vehicleService
+      .getVehicles()
+      .subscribe(data => (this.vehiclesReal = data))
+  }
 }

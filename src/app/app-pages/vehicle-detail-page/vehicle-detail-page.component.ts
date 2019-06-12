@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core'
-import { VehicleViewModel } from 'app/models/view-models/vehicle-view-model'
 import { FormControl, FormGroup } from '@angular/forms'
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { environment } from '../../../environments/environment'
-import { UserService } from '../../services/user.service'
 import { AuthService } from '../../services/auth.service'
-import { catchError, map } from 'rxjs/operators'
-import { of } from 'rxjs/internal/observable/of'
 import { UserDto } from '../../models/dtos/user-dto'
 import { ActivatedRoute, Params } from '@angular/router'
+import { IVehicle } from '../../models/interfaces/vehicle'
+import { VehicleService } from '../../services/vehicle.service'
 
 @Component({
   selector: 'app-vehicle-detail-page',
@@ -17,29 +15,49 @@ import { ActivatedRoute, Params } from '@angular/router'
 })
 export class VehicleDetailPageComponent implements OnInit {
   location: string = 'Amsterdam'
-  vehicle: VehicleViewModel
   formdata: FormGroup
   isLoading: boolean
   isLoggedIn: boolean
   user: any
   vehicleId: string
-
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.vehicle = {
-      id: 123456789,
-      brand: 'Tesla',
-      imagePath: '',
-      model: 'Model S',
-      vehicleType: 'Luxury',
-    }
-    this.isLoading = false
+  urlstring: string = window.location.href
+  vehicle: IVehicle = {
+    id: null,
+    timestamp: null,
+    registration: null,
+    colour: null,
+    mileage: null,
+    model: null,
+    make: null,
+    type: null,
+    price: null,
+    longitude: null,
+    latitude: null,
+    timesRented: null,
+    user: {
+      city: null,
+    },
+    availables: null,
+    reservations: null,
+    images: null,
+    rented: null,
   }
 
+  constructor(
+    private vehicleService: VehicleService,
+    private http: HttpClient,
+    private authService: AuthService,
+    private route: ActivatedRoute
+  ) {}
+
   ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe(user => {
+      console.log(user.id)
+    })
+    console.log(this.route.snapshot.paramMap.get(' id'))
+    this.vehicleService
+      .getVehicleWithId(getLastNumberOfString(this.urlstring))
+      .subscribe(data => (this.vehicle = data))
     this.formdata = new FormGroup({
       fromDateInput: new FormControl(''),
       tillDateInput: new FormControl(''),
@@ -49,10 +67,10 @@ export class VehicleDetailPageComponent implements OnInit {
       this.user = user
       console.log({ user })
     })
-    this.activatedRoute.queryParams.subscribe((queryparam: Params) => {
+    this.route.queryParams.subscribe((queryparam: Params) => {
       console.log(queryparam)
     })
-    this.activatedRoute.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.vehicleId = params.id
     })
   }
@@ -75,4 +93,13 @@ export class VehicleDetailPageComponent implements OnInit {
       }, 1400)
     }
   }
+}
+
+// ghetto
+function getLastNumberOfString(str) {
+  const allNumbers = str
+    .replace(/[^0-9]/g, ' ')
+    .trim()
+    .split(/\s+/)
+  return parseInt(allNumbers[allNumbers.length - 1], 10)
 }
