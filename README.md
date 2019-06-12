@@ -1,52 +1,13 @@
-# Angular4 Spring Boot JWT Starter
+# AirR&D Frontend project
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/78600ce3-3bbe-4c62-ba41-5b5074f2d1a2/deploy-status)](https://app.netlify.com/sites/airrnd/deploys)
 <a href="#badge">
-  <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+<img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
 </a>
 
-## File Structure
-
-```
-angular-spring-starter/frontend
- ├──src/
- │   ├──app                                                     * WebApp: folder
- │   │   ├──conponent                                           * stores all the reuseable components
- │   │   │   ├──api-card                                        * the card component in the home page
- │   │   │   ├──footer
- │   │   │   ├──github                                          * github banner in home page
- │   │   │   └──header
- │   │   ├──guard
- │   │   │   ├──login.guard.ts                                  * prevents unauthticated users from going into certain routes
- │   │   │   └──guest.guard.ts                                  * prevents authticated user from going into certain routes. e.g /login
- │   │   ├──home                                                * home dashboard component
- │   │   ├──login                                               * login page card component
- │   │   ├──change-password                                     * change password card component
- │   │   ├──not-found                                           * not found page component
- │   │   ├──service
- │   │   │   ├──api.service.ts                                  * base api service class, the parent class for all api related services
- │   │   │   ├──auth.service.ts                                 * auth related api service like /login /logout
- │   │   │   ├──config.service.ts                               * global api path config file, this service stores all the app related api paths
- │   │   │   ├──foo.service.ts                                  * demo public api service FOO
- │   │   │   └──user.service.ts                                 * service for init user info and view user info
- │   │   │       ├──DeleteableModelRepository.java              * base repository that overwrites the findAll method.
- │   │   │       └──UserRepository.java
- │   │   ├──app-routing.module.ts                               * main router module
- │   │   ├──app.component.*                                     * main app component
- │   │   └──app.module.ts                                       * mian app module
- │   ├──assets                                                  * static files, images etc.
- │   └──environments
- │       ├──environments.prod.ts                                * production env config file
- │       └──environments.ts                                     * develop env config file
- ├──karma.conf.js                                               * karma config for our unit tests
- ├──package.json                                                * what npm uses to manage it's dependencies
- ├──protractor.conf.js                                          * protractor config for our end-to-end tests
- ├──proxy.conf.json                                             * proxy frontend request to backend :8080
- ├──tsconfig.json                                               * typescript config used outside webpack
- └──tslint.json                                                 * typescript lint config
-```
-
 ## Development server
+
+**Run npm install before each of these commands**
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
