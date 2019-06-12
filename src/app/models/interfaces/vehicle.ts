@@ -1,3 +1,8 @@
+export interface IVehicleImage {
+  id: number
+  path: string
+}
+
 export interface IVehicle {
   id: number
   timestamp: null
@@ -14,6 +19,6 @@ export interface IVehicle {
   user: {}
   availables: []
   reservations: []
-  images: []
+  images: IVehicleImage[]
   rented: boolean
 }

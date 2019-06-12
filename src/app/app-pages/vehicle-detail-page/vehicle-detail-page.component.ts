@@ -39,7 +39,7 @@ export class VehicleDetailPageComponent implements OnInit {
     },
     availables: null,
     reservations: null,
-    images: null,
+    images: [],
     rented: null,
   }
 
@@ -57,7 +57,10 @@ export class VehicleDetailPageComponent implements OnInit {
     console.log(this.route.snapshot.paramMap.get(' id'))
     this.vehicleService
       .getVehicleWithId(getLastNumberOfString(this.urlstring))
-      .subscribe(data => (this.vehicle = data))
+      .subscribe(data => {
+        this.vehicle = data
+        console.log(this.vehicle)
+      })
     this.formdata = new FormGroup({
       fromDateInput: new FormControl(''),
       tillDateInput: new FormControl(''),
