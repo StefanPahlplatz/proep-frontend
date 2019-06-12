@@ -27,11 +27,7 @@ export class VehicleCreationComponent implements OnInit {
     longitude: null,
     latitude: null,
     timesRented: null,
-    user: {
-      id: null,
-      name: null,
-      city: null,
-    },
+    user: null,
     availables: null,
     reservations: null,
     images: null,
@@ -51,6 +47,15 @@ export class VehicleCreationComponent implements OnInit {
       .subscribe(user => (this.currentUserId = user.id))
   }
 
+  onSubmit() {
+    this.vehicleService
+      .makeVehicle(this.currentUserId, this.vehicle.registration)
+      .pipe(catchError(this.handleError))
+      .subscribe(() => {
+        this.router.navigate(['/profile'])
+      })
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -64,14 +69,5 @@ export class VehicleCreationComponent implements OnInit {
     }
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.')
-  }
-
-  onSubmit() {
-    this.vehicleService
-      .makeVehicle(this.currentUserId, this.vehicle.registration)
-      .pipe(catchError(this.handleError))
-      .subscribe(() => {
-        this.router.navigate(['/profile'])
-      })
   }
 }
