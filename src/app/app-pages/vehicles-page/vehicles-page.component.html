@@ -27,7 +27,10 @@
         <a [routerLink]="[vehicle.id]">
           <div class="thumbnail">
             <img
-              src="https://conceptualminds.com/wp-content/uploads/2015/08/car-mechanic-website-placeholder-2.jpg"
+              src="{{
+                vehicle.images[0].path ||
+                  'https://conceptualminds.com/wp-content/uploads/2015/08/car-mechanic-website-placeholder-2.jpg'
+              }}"
               alt="{{ vehicle.brand }}"
               style="
                   object-fit: cover;
