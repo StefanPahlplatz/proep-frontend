@@ -1,2 +1,46 @@
 <app-navbar [hasBorder]="true"></app-navbar>
+
+<div class="content">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card" style="width: 18rem;">
+        <img src="assets/images/default-profile.png" class="card-img-top" />
+        <div class="card-body user-info">
+          <h5 class="card-title">My Profile</h5>
+          <ul>
+            <li>
+              <span>First Name</span>
+              {{ user.firstname ? user.firstname : '-' }}
+            </li>
+            <li>
+              <span>Last Name</span>
+              {{ user.lastname ? user.lastname : '-' }}
+            </li>
+            <li>
+              <span>Address</span>
+              {{ user.address ? user.address : '-' }}
+            </li>
+            <li>
+              <span>City</span>
+              {{ user.city ? user.city : '-' }}
+            </li>
+            <li>
+              <span>Email</span>
+              {{ user.email ? user.email : '-' }}
+            </li>
+            <li>
+              <span>Telephone</span>
+              {{ user.telephone ? user.telephone : '-' }}
+            </li>
+          </ul>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+  </div>
+</div>
+
 {{ user | json }}

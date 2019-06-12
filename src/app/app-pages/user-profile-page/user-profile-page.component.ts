@@ -13,15 +13,28 @@ import { of } from 'rxjs'
   styleUrls: ['./user-profile-page.component.scss'],
 })
 export class UserProfilePageComponent implements OnInit {
-  user: UserDto
+  user: UserDto = {
+    id: null,
+    firstname: null,
+    lastname: null,
+    address: null,
+    city: null,
+    email: null,
+    rating: null,
+    telephone: null,
+    username: null,
+    timestamp: null,
+    reservations: [],
+    authorities: [],
+  }
 
-  constructor(
-    private authService: AuthService,
-    private userService: UserService,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
+    this.getUser()
+  }
+
+  private getUser() {
     this.authService
       .getCurrentUser()
       .pipe(
