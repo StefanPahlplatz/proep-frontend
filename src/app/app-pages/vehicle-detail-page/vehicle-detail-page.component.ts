@@ -11,7 +11,27 @@ import { IVehicle } from 'app/models/interfaces/vehicle'
 export class VehicleDetailPageComponent implements OnInit {
   location: string = 'Amsterdam'
   urlstring: string = window.location.href
-  vehicle: IVehicle
+  vehicle: IVehicle = {
+    id: null,
+    timestamp: null,
+    registration: null,
+    colour: null,
+    mileage: null,
+    model: null,
+    make: null,
+    type: null,
+    price: null,
+    longitude: null,
+    latitude: null,
+    timesRented: null,
+    user: {
+      city: null,
+    },
+    availables: null,
+    reservations: null,
+    images: null,
+    rented: null,
+  }
 
   constructor(private vehicleService: VehicleService) {}
 
@@ -22,6 +42,7 @@ export class VehicleDetailPageComponent implements OnInit {
   }
 }
 
+//ghetto
 function getLastNumberOfString(str) {
   var allNumbers = str
     .replace(/[^0-9]/g, ' ')
