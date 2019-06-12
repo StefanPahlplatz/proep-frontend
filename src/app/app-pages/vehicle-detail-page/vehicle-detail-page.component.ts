@@ -5,7 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { environment } from '../../../environments/environment'
 import { UserService } from '../../services/user.service'
 import { AuthService } from '../../services/auth.service'
-import { catchError } from 'rxjs/operators'
+import { catchError, map } from 'rxjs/operators'
 import { of } from 'rxjs/internal/observable/of'
 import { UserDto } from '../../models/dtos/user-dto'
 import { ActivatedRoute, Params } from '@angular/router'
@@ -47,19 +47,28 @@ export class VehicleDetailPageComponent implements OnInit {
     this.isLoggedIn = this.authService.isAuthenticated()
     this.authService.getCurrentUser().subscribe((user: UserDto) => {
       this.user = user
+      console.log({ user })
     })
     this.activatedRoute.queryParams.subscribe((queryparam: Params) => {
       console.log(queryparam)
+    })
+    this.activatedRoute.params.subscribe(params => {
+      this.vehicleId = params.id
     })
   }
 
   onClickSubmit(data) {
     console.log(data)
     if (data.fromDateInput && data.tillDateInput) {
-      console.log('submit')
-      this.http.post(`${environment.airRnD.baseUrl}/reservation/`, {
-        userId: this.user.id,
-      })
+      this.http
+        .post<{}>(`${environment.airRnD.baseUrl}/reservation/`, {
+          userId: this.user.id,
+          vehicleId: this.vehicleId,
+          startDate: data.fromDateInput,
+          endDate: data.tillDateInput,
+        })
+        .subscribe(re => console.log(re))
+
       this.isLoading = true
       setTimeout(() => {
         this.isLoading = false
