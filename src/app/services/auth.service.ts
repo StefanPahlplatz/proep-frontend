@@ -2,7 +2,7 @@ import { TokenDto } from './../models/dtos/token-dto'
 import { HttpHeaders, HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { map, delay } from 'rxjs/operators'
 
 import { AuthorityDto } from '../models/dtos/authority-dto'
 import { JsonFormatConvertor } from '../shared/utilities/json-format-convertor'
@@ -76,11 +76,7 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const accessToken = sessionStorage.getItem('airRnD.accessToken')
-    if (accessToken) {
-      return true
-    } else {
-      return false
-    }
+    return accessToken ? true : false
   }
 
   public getCurrentUser(): Observable<UserDto> {
@@ -116,10 +112,16 @@ export class AuthService {
           const convertedData: TokenDto = JsonFormatConvertor.objectKeysToCamelCase(
             response
           )
-          sessionStorage.setItem(
-            'airRnD.accessToken',
-            convertedData.accessToken
-          )
+
+          if (!convertedData.accessToken) {
+            this.logout()
+          } else {
+            sessionStorage.setItem(
+              'airRnD.accessToken',
+              convertedData.accessToken
+            )
+          }
+
           return convertedData
         })
       )

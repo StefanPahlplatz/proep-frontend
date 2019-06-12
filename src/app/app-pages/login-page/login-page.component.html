@@ -38,7 +38,8 @@
         </button>
       </form>
       <br />
-      <div>
+      <!-- This is for development purpose -->
+      <!-- <div>
         <button
           matTooltip="Reset password if someone has changed it already!"
           (click)="onResetCredentials()"
@@ -48,7 +49,7 @@
         >
           Reset Credentials
         </button>
-      </div>
+      </div> -->
 
       <p [class]="notification.msgType" *ngIf="notification">
         {{ notification.msgBody }}
