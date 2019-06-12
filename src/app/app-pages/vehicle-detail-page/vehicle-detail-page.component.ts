@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { VehicleViewModel } from 'app/models/view-models/vehicle-view-model'
 import { VehicleService } from 'app/services/vehicle.service'
 import { IVehicle } from 'app/models/interfaces/vehicle'
+import { Route, Router, ActivatedRoute } from '@angular/router'
+import { AuthService } from 'app/services/auth.service'
 
 @Component({
   selector: 'app-vehicle-detail-page',
@@ -33,9 +35,17 @@ export class VehicleDetailPageComponent implements OnInit {
     rented: null,
   }
 
-  constructor(private vehicleService: VehicleService) {}
+  constructor(
+    private vehicleService: VehicleService,
+    private route: ActivatedRoute,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
+    this.authService.getCurrentUser().subscribe(user => {
+      console.log(user.id)
+    })
+    console.log(this.route.snapshot.paramMap.get(' id'))
     this.vehicleService
       .getVehicleWithId(getLastNumberOfString(this.urlstring))
       .subscribe(data => (this.vehicle = data))
