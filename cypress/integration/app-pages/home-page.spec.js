@@ -2,7 +2,7 @@
 
 context('Home page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200')
+    cy.visit('http://localhost:4200/home')
   })
 
   it('Type into the location input', () => {
