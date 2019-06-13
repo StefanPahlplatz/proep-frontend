@@ -19,8 +19,7 @@ export class VehicleDetailPageComponent implements OnInit {
   isLoading: boolean
   isLoggedIn: boolean
   user: any
-  vehicleId: string
-  urlstring: string = window.location.href
+  vehicleId: number
   vehicle: IVehicle = {
     id: null,
     timestamp: null,
@@ -49,16 +48,16 @@ export class VehicleDetailPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.vehicleId = +this.route.snapshot.paramMap.get('id')
+
     this.authService.getCurrentUser().subscribe(user => {
       console.log(user.id)
     })
-    console.log(this.route.snapshot.paramMap.get(' id'))
-    this.vehicleService
-      .getVehicleWithId(getLastNumberOfString(this.urlstring))
-      .subscribe(data => {
-        this.vehicle = data
-        console.log(this.vehicle)
-      })
+
+    this.vehicleService.getVehicleWithId(this.vehicleId).subscribe(data => {
+      this.vehicle = data
+      console.log(this.vehicle)
+    })
     this.formdata = new FormGroup({
       fromDateInput: new FormControl(''),
       tillDateInput: new FormControl(''),
@@ -95,13 +94,12 @@ export class VehicleDetailPageComponent implements OnInit {
       }, 1400)
     }
   }
-}
 
-// ghetto
-function getLastNumberOfString(str) {
-  const allNumbers = str
-    .replace(/[^0-9]/g, ' ')
-    .trim()
-    .split(/\s+/)
-  return parseInt(allNumbers[allNumbers.length - 1], 10)
+  getLastNumberOfString(str: string) {
+    const allNumbers = str
+      .replace(/[^0-9]/g, ' ')
+      .trim()
+      .split(/\s+/)
+    return parseInt(allNumbers[allNumbers.length - 1], 10)
+  }
 }
