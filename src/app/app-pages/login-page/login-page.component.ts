@@ -30,7 +30,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.route.params

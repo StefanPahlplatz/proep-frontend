@@ -1,16 +1,22 @@
-export interface ReservationDto {
-  id: number
-  cancelled: boolean
-  enddate: Date
-  startdate: Date
+import { VehicleDto } from './vehicle-dto';
+import { ReviewDto } from './review-dto';
+
+export interface ReservationRequestDto {
+  userId: number
+  vehicleId: number
   price: number
-  returned: boolean
-  reviews: ReviewDto[]
+  startDate: Date
+  endDate: Date
 }
 
-export interface ReviewDto {
+export interface ReservationDto {
   id: number
-  rating: number
-  type: string
-  comment: string
+  startdate: Date
+  enddate: Date
+  cancalled: boolean
+  returned: boolean
+  paid: boolean
+  price: number
+  reviews: ReviewDto
+  vehicle: VehicleDto
 }

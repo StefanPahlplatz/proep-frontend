@@ -1,9 +1,9 @@
+<app-navbar [canSearch]="true" [hasBorder]="true"></app-navbar>
 <div class="content">
-  <app-navbar [canSearch]="true" [hasBorder]="true"></app-navbar>
   <div
     *ngIf="vehicle.images.length > 0"
     id="carouselVehicles"
-    class="carousel slide container"
+    class="carousel slide container mt-4"
     data-ride="carousel"
     style="padding: 0;"
   >
@@ -46,7 +46,7 @@
   <div
     *ngIf="vehicle.images.length == 0"
     id="carouselVehicles2"
-    class="carousel slide container"
+    class="carousel slide container mt-4"
     data-ride="carousel"
     style="padding: 0;"
   >
@@ -220,10 +220,7 @@
             <div class="col-sm-4" *ngIf="isLoggedIn">
               <div class="home-container">
                 <div class="card">
-                  <form
-                    [formGroup]="formdata"
-                    (ngSubmit)="onClickSubmit(formdata.value)"
-                  >
+                  <form (ngSubmit)="onClickSubmit()" #reservationForm="ngForm">
                     <h2 style="font-weight: bolder;">Reserve vehicle</h2>
 
                     <div class="form-row" style="display:block">
@@ -232,9 +229,22 @@
                         <input
                           type="date"
                           class="form-control"
-                          id="fromDateInput"
-                          formControlName="fromDateInput"
+                          id="startDate"
+                          name="startDate"
+                          [(ngModel)]="newReservation.startDate"
+                          #startDate="ngModel"
+                          required
                         />
+                        <div
+                          [hidden]="
+                            startDate.valid ||
+                            startDate.pristine ||
+                            startDate.untouched
+                          "
+                          class="alert alert-danger"
+                        >
+                          Number plate is required
+                        </div>
                       </div>
 
                       <div class="form-group">
@@ -242,9 +252,22 @@
                         <input
                           type="date"
                           class="form-control"
-                          id="tillDateInput"
-                          formControlName="tillDateInput"
+                          id="endDate"
+                          name="endDate"
+                          [(ngModel)]="newReservation.endDate"
+                          #endDate="ngModel"
+                          required
                         />
+                        <div
+                          [hidden]="
+                            endDate.valid ||
+                            endDate.pristine ||
+                            endDate.untouched
+                          "
+                          class="alert alert-danger"
+                        >
+                          Number plate is required
+                        </div>
                       </div>
                     </div>
 
@@ -271,6 +294,11 @@
                         ></span>
                         Loading...
                       </button>
+                    </div>
+                    <div>
+                      <p [class]="notification.msgType" *ngIf="notification">
+                        {{ notification.msgBody }}
+                      </p>
                     </div>
                   </form>
                 </div>
