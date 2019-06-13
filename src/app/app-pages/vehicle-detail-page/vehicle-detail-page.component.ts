@@ -5,9 +5,9 @@ import { catchError, finalize } from 'rxjs/operators'
 import { of } from 'rxjs'
 
 import { AuthService } from '../../services/auth.service'
-import { IDisplayMessage } from './../../models/interfaces/display-message'
-import { IVehicle } from '../../models/interfaces/vehicle'
-import { ReservationDto } from './../../models/dtos/reservation-dto'
+import { IDisplayMessage } from '../../models/interfaces/display-message'
+import { VehicleDto } from '../../models/dtos/vehicle-dto'
+import { ReservationRequestDto } from './../../models/dtos/reservation-dto'
 import { ReservationService } from './../../services/reservation.service'
 import { UserDto } from '../../models/dtos/user-dto'
 import { VehicleService } from '../../services/vehicle.service'
@@ -23,7 +23,7 @@ export class VehicleDetailPageComponent implements OnInit {
   isLoggedIn: boolean
   user: UserDto
   vehicleId: number
-  vehicle: IVehicle = {
+  vehicle: VehicleDto = {
     id: null,
     timestamp: null,
     registration: null,
@@ -55,7 +55,7 @@ export class VehicleDetailPageComponent implements OnInit {
     images: [],
     rented: null,
   }
-  newReservation: ReservationDto = {
+  newReservation: ReservationRequestDto = {
     endDate: null,
     price: null,
     startDate: null,
@@ -68,7 +68,7 @@ export class VehicleDetailPageComponent implements OnInit {
     private reservationService: ReservationService,
     private authService: AuthService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.vehicleId = +this.route.snapshot.paramMap.get('id')

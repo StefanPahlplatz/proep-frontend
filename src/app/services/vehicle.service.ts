@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
 import { map } from 'rxjs/operators'
 
-import { IVehicle } from './../models/interfaces/vehicle'
+import { VehicleDto } from '../models/dtos/vehicle-dto'
 import { JsonFormatConvertor } from './../shared/utilities/json-format-convertor'
 import { UserDto } from './../models/dtos/user-dto'
 import { environment } from '../../environments/environment'
@@ -15,28 +15,28 @@ import { environment } from '../../environments/environment'
 export class VehicleService {
   private baseApiUrl: string = `${environment.airRnD.baseUrl}/vehicles`
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getVehicles(): Observable<IVehicle[]> {
-    return this.http.get<IVehicle[]>(this.baseApiUrl + '/')
+  getVehicles(): Observable<VehicleDto[]> {
+    return this.http.get<VehicleDto[]>(this.baseApiUrl + '/')
   }
 
-  getVehicleWithId(i: number): Observable<IVehicle> {
-    return this.http.get<IVehicle>(`${this.baseApiUrl}/${i}`)
+  getVehicleWithId(i: number): Observable<VehicleDto> {
+    return this.http.get<VehicleDto>(`${this.baseApiUrl}/${i}`)
   }
 
-  getVehicleByCity(city: string): Observable<IVehicle> {
-    return this.http.get<IVehicle>(`${this.baseApiUrl}/city/${city}`)
+  getVehicleByCity(city: string): Observable<VehicleDto> {
+    return this.http.get<VehicleDto>(`${this.baseApiUrl}/city/${city}`)
   }
 
   makeVehicle(vehicle: VehicleCreationDto): Observable<any> {
     return this.http.post<any>(`${this.baseApiUrl}/`, vehicle)
   }
 
-  getVehicleByOwner(user: UserDto): Observable<IVehicle[]> {
-    return this.http.post<IVehicle[]>(`${this.baseApiUrl}/user`, user).pipe(
+  getVehicleByOwner(user: UserDto): Observable<VehicleDto[]> {
+    return this.http.post<VehicleDto[]>(`${this.baseApiUrl}/user`, user).pipe(
       map(response => {
-        const convertedData: IVehicle[] = JsonFormatConvertor.objectKeysToCamelCase(
+        const convertedData: VehicleDto[] = JsonFormatConvertor.objectKeysToCamelCase(
           response
         )
         return convertedData

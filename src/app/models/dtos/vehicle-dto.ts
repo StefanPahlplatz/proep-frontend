@@ -1,24 +1,31 @@
-import { UserDto } from './user-dto'
 import { AvailableDto } from './available-dto'
+import { UserDto } from './user-dto'
 import { ReservationDto } from './reservation-dto'
 
 export interface VehicleDto {
-  id: number
-  timestamp: Date
-  registration: string
+  availables: AvailableDto[]
   colour: string
-  mileage: string
-  model: string
+  id: number
+  images: ImageDto[]
+  latitude: number
+  longitude: number
   make: string
+  mileage: number
+  model: string
   price: number
+  registration: string
+  rented: boolean
+  reservations: ReservationDto[]
+  timesRented: number
+  timestamp: Date
   type: string
   user: UserDto
-  longitude: number
-  latitude: number
-  rented: boolean
-  timeRented: number
-  availables: AvailableDto[]
-  reservations: ReservationDto[]
+}
+
+export interface ImageDto {
+  id: number
+  path: string
+  timestamp: Date
 }
 
 export interface VehicleCreationDto {

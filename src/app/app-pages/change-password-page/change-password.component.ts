@@ -32,7 +32,7 @@ export class ChangePasswordPageComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

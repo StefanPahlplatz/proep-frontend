@@ -7,7 +7,7 @@ import { of } from 'rxjs'
 import { AuthService } from '../../services/auth.service'
 import { UserDto } from './../../models/dtos/user-dto'
 import { VehicleService } from './../../services/vehicle.service'
-import { IVehicle } from '../../models/interfaces/vehicle'
+import { VehicleDto } from '../../models/dtos/vehicle-dto'
 
 @Component({
   selector: 'app-user-profile-page',
@@ -29,13 +29,13 @@ export class UserProfilePageComponent implements OnInit {
     reservations: [],
     authorities: [],
   }
-  ownerVehicles: IVehicle[] = []
+  ownerVehicles: VehicleDto[] = []
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private vehicleService: VehicleService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getUser()
@@ -66,7 +66,7 @@ export class UserProfilePageComponent implements OnInit {
   private getOwnerVehicles(user: UserDto) {
     this.vehicleService
       .getVehicleByOwner(user)
-      .subscribe((data: IVehicle[]) => {
+      .subscribe((data: VehicleDto[]) => {
         this.ownerVehicles = data
       })
   }
