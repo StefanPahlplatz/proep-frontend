@@ -35,37 +35,60 @@
           </ul>
         </div>
       </div>
+      <button
+        type="button"
+        class="btn btn-primary btn-lg btn-block mt-4"
+        routerLink="/vehicle-creation"
+      >
+        Rent Out Your Vehicle
+      </button>
     </div>
-    <div class="col-sm-9">
-      <div class="card mb-4" *ngIf="!ownerVehicles || !ownerVehicles.length">
-        <div class="card-body">
-          <p>No vehicle added.</p>
-        </div>
-      </div>
 
-      <div class="card mb-4" *ngFor="let vehicle of ownerVehicles">
-        <div class="card-body">
-          <h5 class="card-title">
-            <strong>{{ vehicle.make + ' ' + vehicle.model }}</strong>
-          </h5>
-          <h6><strong>Reservations:</strong></h6>
-          <p *ngIf="!vehicle.reservations || !vehicle.reservations.length">
-            No reservation
-          </p>
-          <p class="card-text" *ngFor="let reservation of vehicle.reservations">
-            <strong>Date:</strong> {{ reservation.startdate | date: 'short' }} -
-            {{ reservation.enddate | date: 'short' }}
-            <br />
-            <strong>Returned:</strong>{{ reservation.returned ? 'Yes' : 'No' }}
-          </p>
-          <a href="#" class="btn btn-primary">View</a>
-        </div>
-        <div class="card-footer text-muted">
-          {{
-            vehicle.timestamp ? vehicle.timestamp : (getDefaultDate() | date)
-          }}
-        </div>
-      </div>
+    <div class="col-sm-9">
+      <mat-tab-group>
+        <mat-tab label="Your Rent Out Vehicle">
+          <div
+            class="card mb-4"
+            *ngIf="!ownerVehicles || !ownerVehicles.length"
+          >
+            <div class="card-body">
+              <p>No vehicle added.</p>
+            </div>
+          </div>
+
+          <div class="card mt-4" *ngFor="let vehicle of ownerVehicles">
+            <div class="card-body">
+              <h5 class="card-title">
+                <strong>{{ vehicle.make + ' ' + vehicle.model }}</strong>
+              </h5>
+              <h6>Reservations:</h6>
+              <p *ngIf="!vehicle.reservations || !vehicle.reservations.length">
+                No reservation
+              </p>
+              <p
+                class="card-text"
+                *ngFor="let reservation of vehicle.reservations"
+              >
+                <strong>Date:</strong>
+                {{ reservation.startdate | date: 'short' }} -
+                {{ reservation.enddate | date: 'short' }}
+                <br />
+                <strong>Returned:</strong
+                >{{ reservation.returned ? 'Yes' : 'No' }}
+              </p>
+              <a href="#" class="btn btn-primary">View</a>
+            </div>
+            <div class="card-footer text-muted">
+              {{
+                vehicle.timestamp
+                  ? vehicle.timestamp
+                  : (getDefaultDate() | date)
+              }}
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Your Reservation"> Content 2 </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
 </div>
