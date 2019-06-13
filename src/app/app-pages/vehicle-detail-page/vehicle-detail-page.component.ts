@@ -1,11 +1,15 @@
+import { ActivatedRoute } from '@angular/router'
 import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
-import { HttpClient } from '@angular/common/http'
-import { environment } from '../../../environments/environment'
+import { HttpErrorResponse } from '@angular/common/http'
+import { catchError, finalize } from 'rxjs/operators'
+import { of } from 'rxjs'
+
 import { AuthService } from '../../services/auth.service'
-import { UserDto } from '../../models/dtos/user-dto'
-import { ActivatedRoute, Params } from '@angular/router'
+import { IDisplayMessage } from './../../models/interfaces/display-message'
 import { IVehicle } from '../../models/interfaces/vehicle'
+import { ReservationDto } from './../../models/dtos/reservation-dto'
+import { ReservationService } from './../../services/reservation.service'
+import { UserDto } from '../../models/dtos/user-dto'
 import { VehicleService } from '../../services/vehicle.service'
 
 @Component({
@@ -14,11 +18,10 @@ import { VehicleService } from '../../services/vehicle.service'
   styleUrls: ['./vehicle-detail-page.component.scss'],
 })
 export class VehicleDetailPageComponent implements OnInit {
-  location: string = 'Amsterdam'
-  formdata: FormGroup
+  notification: IDisplayMessage = null
   isLoading: boolean
   isLoggedIn: boolean
-  user: any
+  user: UserDto
   vehicleId: number
   vehicle: IVehicle = {
     id: null,
@@ -33,73 +36,72 @@ export class VehicleDetailPageComponent implements OnInit {
     longitude: null,
     latitude: null,
     timesRented: null,
-    user: null,
+    user: {
+      address: null,
+      authorities: null,
+      city: null,
+      email: null,
+      firstname: null,
+      id: null,
+      lastname: null,
+      rating: null,
+      reservations: null,
+      telephone: null,
+      timestamp: null,
+      username: null,
+    },
     availables: null,
     reservations: null,
     images: [],
     rented: null,
   }
+  newReservation: ReservationDto = {
+    endDate: null,
+    price: null,
+    startDate: null,
+    userId: null,
+    vehicleId: null,
+  }
 
   constructor(
     private vehicleService: VehicleService,
-    private http: HttpClient,
+    private reservationService: ReservationService,
     private authService: AuthService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.vehicleId = +this.route.snapshot.paramMap.get('id')
-
-    this.authService.getCurrentUser().subscribe(user => {
-      console.log(user.id)
-    })
+    this.isLoggedIn = this.authService.isAuthenticated()
 
     this.vehicleService.getVehicleWithId(this.vehicleId).subscribe(data => {
       this.vehicle = data
-      console.log(this.vehicle)
+      this.newReservation.price = this.vehicle.price
+      this.newReservation.vehicleId = this.vehicle.id
     })
-    this.formdata = new FormGroup({
-      fromDateInput: new FormControl(''),
-      tillDateInput: new FormControl(''),
-    })
-    this.isLoggedIn = this.authService.isAuthenticated()
     this.authService.getCurrentUser().subscribe((user: UserDto) => {
       this.user = user
-      console.log({ user })
-    })
-    this.route.queryParams.subscribe((queryparam: Params) => {
-      console.log(queryparam)
-    })
-    this.route.params.subscribe(params => {
-      this.vehicleId = params.id
+      this.newReservation.userId = this.user.id
     })
   }
 
-  onClickSubmit(data) {
-    console.log(data)
-    if (data.fromDateInput && data.tillDateInput) {
-      this.http
-        .post<{}>(`${environment.airRnD.baseUrl}/reservation/`, {
-          userId: this.user.id,
-          vehicleId: this.vehicleId,
-          startDate: data.fromDateInput,
-          endDate: data.tillDateInput,
-          price: this.vehicle.price,
-        })
-        .subscribe(re => console.log(re))
-
-      this.isLoading = true
-      setTimeout(() => {
-        this.isLoading = false
-      }, 1400)
-    }
-  }
-
-  getLastNumberOfString(str: string) {
-    const allNumbers = str
-      .replace(/[^0-9]/g, ' ')
-      .trim()
-      .split(/\s+/)
-    return parseInt(allNumbers[allNumbers.length - 1], 10)
+  onClickSubmit() {
+    this.isLoading = true
+    this.reservationService
+      .reserveVehicle(this.newReservation)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.log(error)
+          this.notification = {
+            msgType: 'error',
+            msgBody: error.error,
+          }
+          return of()
+        }),
+        finalize(() => (this.isLoading = false))
+      )
+      .subscribe(() => {
+        this.notification = null
+      })
   }
 }

@@ -25,7 +25,6 @@ export class VehicleService {
     return this.http.get<IVehicle>(`${this.baseApiUrl}/${i}`)
   }
 
-  //Does not work yet
   getVehicleByCity(city: string): Observable<IVehicle> {
     return this.http.get<IVehicle>(`${this.baseApiUrl}/city/${city}`)
   }

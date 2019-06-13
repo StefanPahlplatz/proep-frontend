@@ -1,16 +1,7 @@
 export interface ReservationDto {
-  id: number
-  cancelled: boolean
-  enddate: Date
-  startdate: Date
+  userId: number
+  vehicleId: number
   price: number
-  returned: boolean
-  reviews: ReviewDto[]
-}
-
-export interface ReviewDto {
-  id: number
-  rating: number
-  type: string
-  comment: string
+  startDate: Date
+  endDate: Date
 }
