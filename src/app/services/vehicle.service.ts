@@ -1,3 +1,4 @@
+import { VehicleCreationDto } from './../models/dtos/vehicle-dto'
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
@@ -29,11 +30,8 @@ export class VehicleService {
     return this.http.get<IVehicle>(`${this.baseApiUrl}/city/${city}`)
   }
 
-  makeVehicle(id: number, numberPlate: string): Observable<any> {
-    return this.http.post<any>(`${this.baseApiUrl}/`, {
-      vehicleId: id.toString(),
-      registration: numberPlate,
-    })
+  makeVehicle(vehicle: VehicleCreationDto): Observable<any> {
+    return this.http.post<any>(`${this.baseApiUrl}/`, vehicle)
   }
 
   getVehicleByOwner(user: UserDto): Observable<IVehicle[]> {

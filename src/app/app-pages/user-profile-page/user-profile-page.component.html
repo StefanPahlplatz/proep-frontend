@@ -61,7 +61,9 @@
           <a href="#" class="btn btn-primary">View</a>
         </div>
         <div class="card-footer text-muted">
-          {{ vehicle.timestamp | date }}
+          {{
+            vehicle.timestamp ? vehicle.timestamp : (getDefaultDate() | date)
+          }}
         </div>
       </div>
     </div>

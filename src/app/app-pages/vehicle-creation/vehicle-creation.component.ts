@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core'
-import { IVehicle } from 'app/models/interfaces/vehicle'
-import { VehicleService } from 'app/services/vehicle.service'
-import { ActivatedRoute, Router } from '@angular/router'
-import { AuthService } from 'app/services/auth.service'
-import { catchError } from 'rxjs/operators'
 import { HttpErrorResponse } from '@angular/common/http'
+import { Router } from '@angular/router'
+import { catchError, finalize } from 'rxjs/operators'
 import { throwError } from 'rxjs'
+
+import { AuthService } from '../../services/auth.service'
+import { VehicleCreationDto } from './../../models/dtos/vehicle-dto'
+import { VehicleService } from '../../services/vehicle.service'
 
 @Component({
   selector: 'app-vehicle-creation',
@@ -13,30 +14,16 @@ import { throwError } from 'rxjs'
   styleUrls: ['./vehicle-creation.component.css'],
 })
 export class VehicleCreationComponent implements OnInit {
-  currentUserId: number = null
-  vehicle: IVehicle = {
-    id: null,
-    timestamp: null,
-    registration: null,
-    colour: null,
-    mileage: null,
-    model: null,
-    make: null,
-    type: null,
+  submitted = false
+  newVehicle: VehicleCreationDto = {
+    miledge: null,
     price: null,
-    longitude: null,
-    latitude: null,
-    timesRented: null,
-    user: null,
-    availables: null,
-    reservations: null,
-    images: null,
-    rented: null,
+    registration: null,
+    userId: null,
   }
 
   constructor(
     private vehicleService: VehicleService,
-    private route: ActivatedRoute,
     private authService: AuthService,
     private router: Router
   ) {}
@@ -44,13 +31,17 @@ export class VehicleCreationComponent implements OnInit {
   ngOnInit() {
     this.authService
       .getCurrentUser()
-      .subscribe(user => (this.currentUserId = user.id))
+      .subscribe(user => (this.newVehicle.userId = user.id))
   }
 
   onSubmit() {
+    this.submitted = true
     this.vehicleService
-      .makeVehicle(this.currentUserId, this.vehicle.registration)
-      .pipe(catchError(this.handleError))
+      .makeVehicle(this.newVehicle)
+      .pipe(
+        catchError(this.handleError),
+        finalize(() => (this.submitted = false))
+      )
       .subscribe(() => {
         this.router.navigate(['/profile'])
       })
