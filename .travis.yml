@@ -23,7 +23,7 @@ cache:
 defaults: &defaults
   script:
     - forever start node_modules/.bin/ng serve
-    - npm run cy:run -- --record --parallel --group $STAGE_NAME
+    - npm run cy:run -- --parallel --group $STAGE_NAME
     - forever stopall
 
 jobs:
