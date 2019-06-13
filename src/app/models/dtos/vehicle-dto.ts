@@ -20,3 +20,10 @@ export interface VehicleDto {
   availables: AvailableDto[]
   reservations: ReservationDto[]
 }
+
+export interface VehicleCreationDto {
+  userId: number
+  registration: string
+  price: number
+  miledge: number
+}

@@ -1,0 +1,84 @@
+<div class="content">
+  <app-navbar [canSearch]="true" [hasBorder]="true"></app-navbar>
+</div>
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Vehicle Creation</h1>
+    <form (ngSubmit)="onSubmit()" #vehicleForm="ngForm">
+      <!-- Number Plate -->
+      <div class="form-group">
+        <label for="numberPlate">Number Plate</label>
+        <input
+          type="text"
+          class="form-control"
+          id="numberPlate"
+          required
+          [(ngModel)]="newVehicle.registration"
+          name="numberPlate"
+          #numberPlate="ngModel"
+          [disabled]="submitted"
+        />
+        <div
+          [hidden]="
+            numberPlate.valid || numberPlate.pristine || numberPlate.untouched
+          "
+          class="alert alert-danger"
+        >
+          Number plate is required
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="form-group">
+        <label for="name">Price</label>
+        <input
+          type="text"
+          class="form-control"
+          id="price"
+          required
+          [(ngModel)]="newVehicle.price"
+          name="price"
+          #price="ngModel"
+          [disabled]="submitted"
+          type="number"
+          step="0.01"
+        />
+        <div
+          [hidden]="price.valid || price.pristine || price.untouched"
+          class="alert alert-danger"
+        >
+          ID is required
+        </div>
+      </div>
+
+      <!-- miledge -->
+      <div class="form-group">
+        <label for="name">Miledge</label>
+        <input
+          type="number"
+          class="form-control"
+          id="miledge"
+          required
+          [(ngModel)]="newVehicle.miledge"
+          name="miledge"
+          #miledge="ngModel"
+          [disabled]="submitted"
+        />
+        <div
+          [hidden]="miledge.valid || miledge.pristine || miledge.untouched"
+          class="alert alert-danger"
+        >
+          ID is required
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!vehicleForm.form.valid"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>

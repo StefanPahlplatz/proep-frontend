@@ -27,12 +27,8 @@
         <a [routerLink]="[vehicle.id]">
           <div class="thumbnail">
             <img
-              src="{{
-                vehicle.images.length !== 0
-                  ? vehicle.images[0].path
-                  : 'https://conceptualminds.com/wp-content/uploads/2015/08/car-mechanic-website-placeholder-2.jpg'
-              }}"
-              alt="{{ vehicle.brand }}"
+              [src]="getImage(vehicle.id)"
+              alt="https://conceptualminds.com/wp-content/uploads/2015/08/car-mechanic-website-placeholder-2.jpg"
               style="
                   object-fit: cover;
                   width: 100%;

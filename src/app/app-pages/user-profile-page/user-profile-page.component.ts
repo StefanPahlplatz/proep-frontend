@@ -41,6 +41,10 @@ export class UserProfilePageComponent implements OnInit {
     this.getUser()
   }
 
+  getDefaultDate(): Date {
+    return new Date('2019-01-01')
+  }
+
   private getUser() {
     this.authService
       .getCurrentUser()

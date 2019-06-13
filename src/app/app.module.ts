@@ -22,6 +22,7 @@ import { PopularRidesPageComponent } from './app-pages/popular-rides-page/popula
 import { RegisterPageComponent } from './app-pages/register-page/register-page.component'
 import { SharedModule } from './shared/shared.module'
 import { UserProfilePageComponent } from './app-pages/user-profile-page/user-profile-page.component'
+import { VehicleCreationComponent } from './app-pages/vehicle-creation/vehicle-creation.component'
 import { VehicleDetailPageComponent } from './app-pages/vehicle-detail-page/vehicle-detail-page.component'
 import { VehiclesPageComponent } from './app-pages/vehicles-page/vehicles-page.component'
 import { TokenInterceptor } from './services/http-interceptors/token-interceptor'
@@ -37,6 +38,7 @@ import { TokenInterceptor } from './services/http-interceptors/token-interceptor
     LogoutPageComponent,
     PopularRidesPageComponent,
     RegisterPageComponent,
+    VehicleCreationComponent,
     VehicleDetailPageComponent,
     VehiclesPageComponent,
     UserProfilePageComponent,
